@@ -34,6 +34,6 @@ for testing model fit performance.
 \examples{
 data(fuzzydat)
 fuzzylm(y ~ x, data = fuzzydat$lee)
-fuzzylm(y ~ x, data = fuzzydat$dia, method = "dia", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
+fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
 }
 \keyword{datasets}

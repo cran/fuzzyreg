@@ -13,6 +13,8 @@
 #' @param angle angle from the shaft of the arrow to the edge of the arrow head.
 #' @param main a main title for the plot. Default title specifies method used to fit 
 #'    the model.
+#' @param xlab a label for the x axis, defaults to a description of x.
+#' @param ylab a label for the y axis, defaults to a description of y.
 #' @param ... additional graphical parameters.
 #' @details Silently plots the data. Fuzzy numbers are plotted with points for the central 
 #'   value and arrows specifying spreads.
@@ -24,7 +26,7 @@
 #' plot(f)
 #' plot(f, res = 20, col.fuzzy = "red")
 
-plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", ...){
+plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", xlab, ylab, ...){
 	# assumes intercept in first column
 	xc <- ifelse(is.numeric(which), which + 1, which(colnames(x$x) == which))
 	coefs <- x$coef
@@ -46,16 +48,21 @@ plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, an
 	y0 <- c(seq(y0l, y0c, length.out = res), seq(y0c, y0r, length.out = res))
 	y1 <- c(seq(y1l, y1c, length.out = res), seq(y1c, y1r, length.out = res))
 	ylims <- range(y0, y1)
-	if(x$method != "lee") ylims <- range(ylims, y - x$y[, 2], y + x$y[, ifelse(ncol(as.matrix(x$y)) == 2, 2, 3)])
+	if(x$method != "PLRLS") ylims <- range(ylims, y - x$y[, 2], y + x$y[, ifelse(ncol(as.matrix(x$y)) == 2, 2, 3)])
 	xlims <- range(x0, x1)
-	if(x$method == "nasrabadi"){
+	if(x$method == "MOFLR"){
 		xc2 <- xc + (ncol(x$x)-1) / 2
 		xlims <- range(xlims, X - x$x[, xc2], X + x$x[, xc2])
 	}
 	if(main == "method") main <- paste("Fuzzy linear regression using the", toupper(x$method), "method")
-
-	graphics::plot(1, type = "n", ylim = ylims, xlim = xlims, xlab = colnames(x$x)[xc], 
-		 ylab = all.vars(x$call)[1], main = main, ...)
+	
+	if(missing(xlab)) { xlab <- colnames(x$x)[xc] }
+	if(missing(ylab)) { ylab <- all.vars(x$call)[1] }
+	
+	graphics::plot(1, type = "n", ylim = ylims, xlim = xlims, xlab = xlab, 
+		 ylab = ylab, main = main, ...)
+	s <- grDevices::dev.size("in")
+	
 	if(res > 2){
 		if(is.na(col.fuzzy)) col.fuzzy = "grey"
 		cols = grDevices::colorRampPalette(c("white", col.fuzzy, "white"))(res * 2)
@@ -67,18 +74,23 @@ plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, an
 	graphics::points(X, y, ...)
 
 	if(ncol(as.matrix(x$y)) == 2){
-		graphics::arrows(X, y, X, y - x$y[, 2], length = length, angle = angle, ...)
-		graphics::arrows(X, y, X, y + x$y[, 2], length = length, angle = angle, ...)
+		spread <- x$y[, 2]
+		if(any(spread < s[2] / 1000)) spread <- spread + (s[2] / 1000)
+		graphics::arrows(X, y, X, y - spread, length = length, angle = angle, ...)
+		graphics::arrows(X, y, X, y + spread, length = length, angle = angle, ...)
 	}
 	if(ncol(as.matrix(x$y)) == 3){
-		graphics::arrows(X, y, X, y - x$y[, 2], length = length, angle = angle, ...)
-		graphics::arrows(X, y, X, y + x$y[, 3], length = length, angle = angle, ...)
+		spread <- x$y[, 2:3]
+		if(any(spread < s[2] / 1000)) spread <- spread + (s[2] / 1000)
+		graphics::arrows(X, y, X, y - spread[, 1], length = length, angle = angle, ...)
+		graphics::arrows(X, y, X, y + spread[, 2], length = length, angle = angle, ...)
 	}
 	
-	if(x$method == "nasrabadi"){
-		if(any(x$x[, xc2] == 0)) x$x[, xc2] <- x$x[, xc2] + min(x$x[x$x[, xc2] > 0, xc2]) / 100
-		graphics::arrows(X, y, X - x$x[, xc2], y, length = length, angle = angle, ...)
-		graphics::arrows(X, y, X + x$x[, xc2], y, length = length, angle = angle, ...)
+	if(x$method == "MOFLR"){
+		spread <- x$x[, xc2]
+		if(any(spread < s[1] / 1000)) { spread <- spread + (s[1] / 1000) }
+		graphics::arrows(X, y, X - spread, y, length = length, angle = angle, ...)
+		graphics::arrows(X, y, X + spread, y, length = length, angle = angle, ...)
 	}
 	
 	graphics::abline(a = coefs[1,1], b = coefs[2,1], ...)

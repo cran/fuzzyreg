@@ -37,7 +37,7 @@ predict.fuzzylm <- function(object, newdata, ...){
 	ct <- NULL
 	fy <- matrix(rep(object$coef[1,], nrow(newdata)), ncol = 3, byrow = TRUE, 
 				 dimnames = list(rownames(newdata), colnames(object$coef)))
-	if(object$method %in% c("lee", "diamond", "hung", "tanaka")) {
+	if(object$method %in% c("PLRLS", "FLS", "OPLR", "PLR")) {
 		for(i in 2:nrow(object$coef)){
 			for(j in 1:nrow(newdata)){
 				cti <- prodSfuzzy(y = object$coef[i,], x = newdata[j, i-1])
@@ -47,7 +47,7 @@ predict.fuzzylm <- function(object, newdata, ...){
 		}
 			
 	} 
-	if(object$method == "nasrabadi"){
+	if(object$method == "MOFLR"){
 		n <- n/2
 		# sort fuzzy input numbers
 		fx <- paste(1:n, (n+1):(2*n), (n+1):(2*n), sep=",")

@@ -1,18 +1,18 @@
-#' Fuzzy Linear Regression using Diamond's Method
+#' Fuzzy Linear Regression using the Fuzzy Least Squares Method
 #'
-#' The function calculates fuzzy regression coeficients using the least squares method
-#' proposed by Diamond (1988) for non-symmetric triangular fuzzy numbers.
+#' The function calculates fuzzy regression coeficients using the fuzzy least squares 
+#' (FLS) method proposed by Diamond (1988) for non-symmetric triangular fuzzy numbers.
 #' @param x two column matrix with the second column representing independent variable
 #'    observations. The first column is related to the intercept, so it consists of ones.
 #'    Missing values not allowed.
 #' @param y matrix of dependent variable observations. The first column contains the 
 #'    central tendency, the second column the left spread and the third column the right
 #'    spread of non-symmetric triangular fuzzy numbers. Missing values not allowed.
-#' @details The Diamond's method for the fuzzy linear regression fits a simple model.
+#' @details The FLS method for the fuzzy linear regression fits a simple model.
 #' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-#'    \code{method = "diamond"}.
+#'    \code{method = "fls"}.
 #' @inherit fuzzylm return
-#' @inherit lee seealso
+#' @inherit plrls seealso
 #' @references Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
 #'    46(3): 141-157.
 #' @keywords fuzzy
@@ -22,12 +22,12 @@
 #'    x <- fuzzydat$dia[, 1, drop = FALSE]
 #'    x <- cbind(rep(1, nrow(x)), x)
 #'    y <- fuzzydat$dia[, c(2,3,3)]
-#'    diamond(x = x, y = y)
+#'    fls(x = x, y = y)
 
 
-diamond <- function(x, y){
-	if(ncol(x) != 2) stop("Only one independent variable allowed for the Diamond and Korner's method")
-    if(ncol(y) != 3) stop("Only one dependent variable with two spreads allowed for the Diamond and Korner's method")
+fls <- function(x, y){
+	if(ncol(x) != 2) stop("Only one independent variable allowed for the FLS method")
+    if(ncol(y) != 3) stop("Only one dependent variable with two spreads allowed for the FLS method")
 	vars <- colnames(x)
 	n <- nrow(x)
 	sx <- sum(x[,2])
@@ -57,7 +57,15 @@ diamond <- function(x, y){
 	rownames(lims) <- vars
 	colnames(lims) <- c("min", "max")
 	fuzzy <- list(call = NULL, x = x, y = y, lims = lims,
-		method = "diamond", fuzzynum = "non-symmetric triangular", coef = coefs)
+		method = "fls", fuzzynum = "non-symmetric triangular", coef = coefs)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy
+}
+
+
+#' @inherit fls
+#' @export
+diamond <- function(x, y){
+	.Deprecated("fls")
+	fls(x = x, y = y)
 }

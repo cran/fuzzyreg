@@ -4,7 +4,7 @@
 \alias{fuzzylm}
 \title{Fuzzy Linear Regression}
 \usage{
-fuzzylm(formula, data, method = "lee", fuzzy.left.x = NULL,
+fuzzylm(formula, data, method = "plrls", fuzzy.left.x = NULL,
   fuzzy.right.x = NULL, fuzzy.left.y = NULL, fuzzy.right.y = NULL, ...)
 }
 \arguments{
@@ -12,8 +12,7 @@ fuzzylm(formula, data, method = "lee", fuzzy.left.x = NULL,
 
 \item{data}{a data.frame, containing the variables in formula.}
 
-\item{method}{method for fitting of the fuzzy linear model. 
-Accepts any non-redundant abbreviation.}
+\item{method}{method for fitting of the fuzzy linear model.}
 
 \item{fuzzy.left.x}{character string vector specifying column name(s) with the left 
 spread of the fuzzy independent variable(s).}
@@ -37,21 +36,21 @@ Returns a \code{fuzzylm} object that includes the model coefficients, limits
 A wrapper function that calculates fuzzy regression coeficients using a chosen method.
 }
 \details{
-The implemented methods include \code{\link{lee}} for fitting the fuzzy linear
-  regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{diamond}} 
-  (Diamond 1988), \code{\link{hung}} (Hung and Yang 2006), \code{\link{nasrabadi}}
-  (Nasrabadi et al. 2005) and \code{\link{tanaka}} (Tanaka et al. 1989) methods for
+The implemented methods include \code{\link{plrls}} for fitting the fuzzy linear
+  regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{fls}} 
+  (Diamond 1988), \code{\link{oplr}} (Hung and Yang 2006), \code{\link{moflr}}
+  (Nasrabadi et al. 2005) and \code{\link{plr}} (Tanaka et al. 1989) methods for
   triangular fuzzy numbers.
 }
 \examples{
 data(fuzzydat)
-fuzzylm(y ~ x, data = fuzzydat$lee, method = "lee")
+fuzzylm(y ~ x, data = fuzzydat$lee, method = "plrls")
 \dontrun{
 # returns error due to incorrect number of spreads
-fuzzylm(y ~ x, data = fuzzydat$dia, method = "diamond", fuzzy.left.y = "yl")}
+fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")}
 # use the same column name for left and right spread, when the method requests 
-# non-symmetric fuzzy numbers
-fuzzylm(y ~ x, data = fuzzydat$dia, method = "diamond", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
+# non-symmetric fuzzy numbers, but data specifies symmetric fuzzy numbers 
+fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
 }
 \references{
 Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}

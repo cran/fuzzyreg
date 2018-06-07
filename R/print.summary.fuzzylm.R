@@ -16,7 +16,7 @@
 
 print.summary.fuzzylm = function(x, ...){
 	n = length(x$c)
-	if(x$method %in% c("nasrabadi", "tanaka")) n = (length(x$c) + 1) / 2
+	if(x$method %in% c("MOFLR", "PLR")) n = (length(x$c) + 1) / 2
 	cat("\nModel for the central tendency:\n")
 	cat(x$yvars[1], "=", x$c[1], "+", 
 		paste(x$c[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")

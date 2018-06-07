@@ -1,6 +1,7 @@
-#' Fuzzy Linear Regression using Lee and Tanaka's Method
+#' Fuzzy Linear Regression using the Possibilistic Linear Regression with Least Squares Method
 #'
-#' The function calculates fuzzy regression coeficients using method by Lee and Tanaka (1999)
+#' The function calculates fuzzy regression coeficients using the possibilistic linear
+#' regression with least squares method developed by Lee and Tanaka (1999)
 #' that combines the least squares approach (fitting of a central tendency) with the
 #' possibilistic approach (fitting of spreads) when approximating an observed linear
 #' dependence by a fuzzy linear model.
@@ -18,7 +19,7 @@
 #'    
 #'    The h-level is a degree of fitting chosen by the decision maker.
 #' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-#'    \code{method = "lee"}.
+#'    \code{method = "plrls"}.
 #' @inherit fuzzylm return
 #' @references Lee, H. and Tanaka, H. (1999) Fuzzy approximations with non-symmetric fuzzy
 #'    parameters in fuzzy regression analysis. \emph{Journal of the Operations Research
@@ -26,12 +27,13 @@
 #' @keywords fuzzy
 #' @seealso \code{\link{fuzzylm}}
 #' @export
+#' @import quadprog
 #' @examples
 #' x <- matrix(c(rep(1, 15), rep(1:3, each = 5)), ncol = 2)
 #' y <- matrix(c(rnorm(5, 1), rnorm(5, 2), rnorm(5, 3)), ncol = 1)
-#' lee(x = x, y = y)
+#' plrls(x = x, y = y)
 
-lee = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
+plrls = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
 	if(h < 0 | h > 1) stop("h must be a value between 0 and 1.")
 	n <- ncol(x)
 	m <- nrow(x)
@@ -73,7 +75,15 @@ lee = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
 	rownames(lims) <- vars
 	colnames(lims) <- c("min", "max")
 	fuzzy <- list(call = NULL, x = x, y = y, lims = lims,
-		method = "lee", fuzzynum = "non-symmetric triangular", coef = coefs)
+		method = "PLRLS", fuzzynum = "non-symmetric triangular", coef = coefs)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy
+}
+
+#' @inherit plrls
+#' @export
+
+lee = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
+	.Deprecated("plrls")
+	plrls(x = x, y = y, h = h, k1 = k1, k2 = k2, epsilon = epsilon)
 }

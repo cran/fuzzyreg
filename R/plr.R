@@ -1,8 +1,8 @@
-#' Fuzzy Linear Regression using Tanaka et al.'s Method
+#' Fuzzy Linear Regression Using the Possibilistic Linear Regression Method
 #'
-#' The function calculates fuzzy regression coeficients using method by Tanaka et al.
-#' (1989) using a possibilistic fuzzy estimator. Specifically, the \code{min} problem is 
-#' implemented in this function.
+#' The function calculates fuzzy regression coeficients using the possibilistic linear
+#' regression method (PLR) developed by Tanaka et al. (1989). Specifically, the 
+#' \code{min} problem is implemented in this function.
 #' @param x matrix of \emph{n} independent variable observations. The first column is
 #'    related to the intercept, so it consists of ones. Missing values not allowed.
 #' @param y two column matrix of dependent variable values and the respective spread. 
@@ -14,20 +14,21 @@
 #'    symmetric triangular fuzzy number coefficients. 
 #'    The h-level is a degree of fitting chosen by the decision maker.
 #' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-#'    \code{method = "tanaka"}.
+#'    \code{method = "plr"}.
 #' @inherit fuzzylm return
-#' @inherit lee seealso
+#' @inherit plrls seealso
 #' @references Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
 #'    regression analysis for fuzzy data. \emph{European Journal of Operational 
 #'     Research} 40: 389-396.
 #' @keywords fuzzy
 #' @export
+#' @import limSolve
 #' @examples
 #' data(fuzzydat)
-#' fuzzylm(y ~ x, fuzzydat$tan, "tan", , , "yl", "yr")
+#' fuzzylm(y ~ x, fuzzydat$tan, "plr", , , "yl", "yr")
 
 
-tanaka = function(x, y, h = 0){
+plr = function(x, y, h = 0){
 	if(h < 0 | h > 1) stop("h must be a value between 0 and 1.")
 	n <- nrow(x)
 	k <- ncol(x)
@@ -49,8 +50,15 @@ tanaka = function(x, y, h = 0){
 	lims <- t(apply(x, 2, range))
 	rownames(lims) <- vars
 	colnames(lims) <- c("min", "max")
-	fuzzy <- list(call = NULL, method = "tanaka", fuzzynum = "symmetric triangular", coef = res, 
+	fuzzy <- list(call = NULL, method = "PLR", fuzzynum = "symmetric triangular", coef = res, 
 		 		  lims = lims, x = x, y = y)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy
+}
+
+#' @inherit plr
+#' @export
+tanaka = function(x, y, h = 0){
+	.Deprecated("plr")
+	plr(x = x, y = y, h = h)
 }

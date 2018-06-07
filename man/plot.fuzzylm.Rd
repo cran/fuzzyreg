@@ -5,7 +5,7 @@
 \title{Plot Fuzzy Linear Regression}
 \usage{
 \method{plot}{fuzzylm}(x, which = 1, res = 2, col.fuzzy = NA,
-  length = 0.05, angle = 90, main = "method", ...)
+  length = 0.05, angle = 90, main = "method", xlab, ylab, ...)
 }
 \arguments{
 \item{x}{a \code{fuzzylm} object.}
@@ -24,6 +24,10 @@ plot. Minimum resolution for shading the plot is 3.}
 
 \item{main}{a main title for the plot. Default title specifies method used to fit 
 the model.}
+
+\item{xlab}{a label for the x axis, defaults to a description of x.}
+
+\item{ylab}{a label for the y axis, defaults to a description of y.}
 
 \item{...}{additional graphical parameters.}
 }

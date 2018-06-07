@@ -4,7 +4,6 @@
 #' @param formula a model formula.
 #' @param data a data.frame, containing the variables in formula.
 #' @param method method for fitting of the fuzzy linear model. 
-#'     Accepts any non-redundant abbreviation.
 #' @param fuzzy.left.x character string vector specifying column name(s) with the left 
 #'   spread of the fuzzy independent variable(s).
 #' @param fuzzy.right.x character string vector specifying column name(s) with the right 
@@ -14,10 +13,10 @@
 #' @param fuzzy.right.y character string vector specifying column name(s) with the right 
 #'   spread of the fuzzy dependent variable(s).
 #' @param ... additional parameters used by specific methods.
-#' @details The implemented methods include \code{\link{lee}} for fitting the fuzzy linear
-#'   regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{diamond}} 
-#'   (Diamond 1988), \code{\link{hung}} (Hung and Yang 2006), \code{\link{nasrabadi}}
-#'   (Nasrabadi et al. 2005) and \code{\link{tanaka}} (Tanaka et al. 1989) methods for
+#' @details The implemented methods include \code{\link{plrls}} for fitting the fuzzy linear
+#'   regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{fls}} 
+#'   (Diamond 1988), \code{\link{oplr}} (Hung and Yang 2006), \code{\link{moflr}}
+#'   (Nasrabadi et al. 2005) and \code{\link{plr}} (Tanaka et al. 1989) methods for
 #'   triangular fuzzy numbers. 
 #' @return Returns a \code{fuzzylm} object that includes the model coefficients, limits
 #'   for data predictions from the model and the input data.
@@ -44,16 +43,16 @@
 #' @export
 #' @examples
 #' data(fuzzydat)
-#' fuzzylm(y ~ x, data = fuzzydat$lee, method = "lee")
+#' fuzzylm(y ~ x, data = fuzzydat$lee, method = "plrls")
 #' \dontrun{
 #' # returns error due to incorrect number of spreads
-#' fuzzylm(y ~ x, data = fuzzydat$dia, method = "diamond", fuzzy.left.y = "yl")}
+#' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")}
 #' # use the same column name for left and right spread, when the method requests 
-#' # non-symmetric fuzzy numbers
-#' fuzzylm(y ~ x, data = fuzzydat$dia, method = "diamond", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
+#' # non-symmetric fuzzy numbers, but data specifies symmetric fuzzy numbers 
+#' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
 
 
-fuzzylm = function(formula, data, method = "lee", fuzzy.left.x = NULL, fuzzy.right.x = NULL, fuzzy.left.y = NULL, fuzzy.right.y = NULL, ...){
+fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.right.x = NULL, fuzzy.left.y = NULL, fuzzy.right.y = NULL, ...){
 	# initiate model.frame
 	cl <- match.call()
 	mf <- match.call(expand.dots = FALSE)
@@ -80,18 +79,21 @@ fuzzylm = function(formula, data, method = "lee", fuzzy.left.x = NULL, fuzzy.rig
 	y <- stats::model.response(mf, "numeric")
 	x <- stats::model.matrix(stats::as.formula(formula), data = mf)
 	# check method
-	methods <- c("lee", "diamond", "hung", "nasrabadi", "tanaka")
-	if(!any(grepl(method, methods)))
+	methods <- c("plrls", "fls", "oplr", "moflr", "plr", "diamond", "hung", "lee", "nasrabadi", "tanaka")
+	if(!any(grepl(tolower(method), methods)))
 		stop(gettextf("method '%s' is not supported.", method))
-	if(sum(grepl(paste0("^", method), methods)) > 1)
-		stop(gettextf("method '%s' matches more than one available method.", method))
-	method <- methods[grepl(paste0("^", method), methods)]
-	coefs <- switch(method, lee = lee(x = x, y = y, ...),
-							diamond = diamond(x = x, y = y, ...),
-							hung = hung(x = x, y = y, ...),
-							nasrabadi = nasrabadi(x = x, y = y, ...),
-							tanaka = tanaka(x = x, y = y, ...))
-	fuzzy <- list(call = cl, method = method, fuzzynum = coefs$fuzzynum, coef = coefs$coef, lims = coefs$lims, x = x, y = y)
+	method <- methods[methods %in% tolower(sub("-", "", method))]
+	coefs <- switch(method, plrls = plrls(x = x, y = y, ...),
+							fls = fls(x = x, y = y, ...),
+							oplr = oplr(x = x, y = y, ...),
+							moflr = moflr(x = x, y = y, ...),
+							plr = plr(x = x, y = y, ...),
+							diamond = fls(x = x, y = y, ...),
+							hung = oplr(x = x, y = x, ...),
+							lee = plrls(x = x, y = y, ...),
+							nasrabadi = moflr(x = x, y = y, ...),
+							tanaka = plr(x = x, y = y, ...))
+	fuzzy <- list(call = cl, method = toupper(method), fuzzynum = coefs$fuzzynum, coef = coefs$coef, lims = coefs$lims, x = x, y = y)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy
 }

@@ -1,8 +1,9 @@
-#' Fuzzy Linear Regression using Hung and Yang's Method
+#' Fuzzy Linear Regression Using the Possibilistic Linear Regression with Omission Method
 #'
-#' The function calculates fuzzy regression coeficients using method by Hung and Yang (2006)
-#' that combines the least squares approach (fitting of a central tendency) with the
-#' possibilistic approach (fitting of spreads) when approximating an observed linear
+#' The function calculates fuzzy regression coeficients using the possibilistic linear 
+#' regression with an outlier omission approach method (OPLR) developed by Hung and Yang 
+#' (2006) that combines the least squares approach (fitting of a central tendency) with 
+#' the possibilistic approach (fitting of spreads) when approximating an observed linear
 #' dependence by a fuzzy linear model.
 #' @param x matrix with the independent variables observations. The first column is
 #'    related to the intercept, so it consists of ones. Missing values not allowed.
@@ -12,24 +13,25 @@
 #' @param h a scalar value in interval \code{[0,1]}, specifying the h-level.
 #' @details The function input expects symmetric fuzzy response and crisp predictors. The 
 #'    prediction returns symmetric triangular fuzzy number coefficients.
-#'    The Hung and Yang's method can detect one outlier in the data that is farther than 
+#'    The OPLR method can detect one outlier in the data that is farther than 
 #'    \code{1.5 * IQR} from either quartile.
 #'    
 #'    The h-level is a degree of fitting chosen by the decision maker.
 #' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-#'    \code{method = "hung"}.
+#'    \code{method = "oplr"}.
 #' @inherit fuzzylm return
-#' @inherit lee seealso
+#' @inherit plrls seealso
 #' @references Hung, W.-L. and Yang, M.-S. (2006) An omission approach for detecting 
 #'    outliers in fuzzy regression models. \emph{Fuzzy Sets and Systems} 157: 3109-3122.
 #' @keywords fuzzy
 #' @export
+#' @import limSolve
 #' @examples
 #' data(fuzzydat)
-#' fuzzylm(y ~ x, fuzzydat$hun, "hung", , , "yl")
+#' fuzzylm(y ~ x, fuzzydat$hun, "oplr", , , "yl")
 
 
-hung <- function(x, y, h = 0){
+oplr <- function(x, y, h = 0){
 	n <- nrow(x)
 	p <- ncol(x)
 	vars <- colnames(x)
@@ -94,8 +96,16 @@ hung <- function(x, y, h = 0){
 	lims <- t(apply(x, 2, range))
 	rownames(lims) <- vars
 	colnames(lims) <- c("min", "max")
-	fuzzy <- list(call = NULL, method = "hung", fuzzynum = "symmetric triangular", coef = res, 
+	fuzzy <- list(call = NULL, method = "OPLR", fuzzynum = "symmetric triangular", coef = res, 
 		 		  lims = lims, x = x, y = y)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy
+}
+
+
+#' @inherit oplr
+#' @export
+hung = function(x, y, h = 0){
+	.Deprecated("oplr")
+	oplr(x = x, y = y, h = h)
 }
