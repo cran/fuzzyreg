@@ -40,6 +40,10 @@ The function input expects both the response and the predictors in form of
    The Nasrabadi et al.'s method can process datasets with multiple outliers. Values
    \code{omega>0.5} decrease weight of outliers on the solution.
 }
+\examples{
+data(fuzzydat)
+fuzzylm(y~x, fuzzydat$nas, "moflr", "xl", , "yl")
+}
 \references{
 Nasrabadi, M. M., Nasrabadi, E. and Nasrabady, A. R. (2005) Fuzzy linear 
    regression analysis: a multi-objective programming approach. \emph{Applied Mathematics

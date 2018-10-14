@@ -17,13 +17,13 @@
 print.summary.fuzzylm = function(x, ...){
 	n = length(x$c)
 	if(x$method %in% c("MOFLR", "PLR")) n = (length(x$c) + 1) / 2
-	cat("\nModel for the central tendency:\n")
+	cat("\nCentral tendency of the fuzzy regression model:\n")
 	cat(x$yvars[1], "=", x$c[1], "+", 
 		paste(x$c[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")
-	cat("\n\nModel for the left spread:\n")
+	cat("\n\nLower boundary of the model support interval:\n")
 	cat(x$yvars[1], "=", x$c[1] - x$l[1], "+", 
 		paste(x$c[2:n] - x$l[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")
-	cat("\n\nModel for the right spread:\n")
+	cat("\n\nUpper boundary of the model support interval:\n")
 	cat(x$yvars[1], "=", x$c[1] + x$l[1], "+", 
 		paste(x$c[2:n] + x$l[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")
 }

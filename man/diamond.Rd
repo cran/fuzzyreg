@@ -26,6 +26,13 @@ The function calculates fuzzy regression coeficients using the fuzzy least squar
 \details{
 The FLS method for the fuzzy linear regression fits a simple model.
 }
+\examples{
+   data(fuzzydat)
+   x <- fuzzydat$dia[, 1, drop = FALSE]
+   x <- cbind(rep(1, nrow(x)), x)
+   y <- fuzzydat$dia[, c(2,3,3)]
+   fls(x = x, y = y)
+}
 \references{
 Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
    46(3): 141-157.

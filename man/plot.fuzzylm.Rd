@@ -4,11 +4,14 @@
 \alias{plot.fuzzylm}
 \title{Plot Fuzzy Linear Regression}
 \usage{
-\method{plot}{fuzzylm}(x, which = 1, res = 2, col.fuzzy = NA,
-  length = 0.05, angle = 90, main = "method", xlab, ylab, ...)
+\method{plot}{fuzzylm}(x, y = NULL, which = 1, res = 2,
+  col.fuzzy = NA, length = 0.05, angle = 90, main = "method",
+  xlab = NULL, ylab = NULL, ...)
 }
 \arguments{
 \item{x}{a \code{fuzzylm} object.}
+
+\item{y}{NULL for plotting a \code{fuzzylm} object.}
 
 \item{which}{an integer or character string specifying which explanatory variable to 
 plot.}

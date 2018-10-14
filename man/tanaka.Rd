@@ -31,6 +31,10 @@ The function input expects the response in form of a symmetric fuzzy
    symmetric triangular fuzzy number coefficients. 
    The h-level is a degree of fitting chosen by the decision maker.
 }
+\examples{
+data(fuzzydat)
+fuzzylm(y ~ x, fuzzydat$tan, "plr", , , "yl", "yr")
+}
 \references{
 Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
    regression analysis for fuzzy data. \emph{European Journal of Operational 

@@ -19,10 +19,8 @@ Returns a list with models for the central tendency and spreads from the fuzzy
 Calculates the summary from the \code{fuzzylm} object.
 }
 \examples{
-x <- rep(1:3, each = 5)
-y <- c(rnorm(5, 1), rnorm(5, 2), rnorm(5, 3))
-dat <- data.frame(x = x, y = y)
-f <- fuzzylm(y ~ x, dat)
+data(fuzzydat)
+f <- fuzzylm(y ~ x, fuzzydat$lee)
 sum.f <- summary(f)
 sum.f
 }

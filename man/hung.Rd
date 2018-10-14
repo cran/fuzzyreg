@@ -35,6 +35,10 @@ The function input expects symmetric fuzzy response and crisp predictors. The
    
    The h-level is a degree of fitting chosen by the decision maker.
 }
+\examples{
+data(fuzzydat)
+fuzzylm(y ~ x, fuzzydat$hun, "oplr", , , "yl")
+}
 \references{
 Hung, W.-L. and Yang, M.-S. (2006) An omission approach for detecting 
    outliers in fuzzy regression models. \emph{Fuzzy Sets and Systems} 157: 3109-3122.

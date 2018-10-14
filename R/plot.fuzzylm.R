@@ -4,6 +4,7 @@
 #' For multiple regression, allows choice of which variable to display. Optionally colors 
 #' the polygon for the regression.
 #' @param x a \code{fuzzylm} object.
+#' @param y NULL for plotting a \code{fuzzylm} object.
 #' @param which an integer or character string specifying which explanatory variable to 
 #'   plot.
 #' @param res an integer \code{>= 2} specifying resolution of shading for the regression  
@@ -25,8 +26,7 @@
 #' f = fuzzylm(y ~ x, fuzzydat$lee)
 #' plot(f)
 #' plot(f, res = 20, col.fuzzy = "red")
-
-plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", xlab, ylab, ...){
+plot.fuzzylm = function(x, y = NULL, which = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", xlab = NULL, ylab = NULL, ...){
 	# assumes intercept in first column
 	xc <- ifelse(is.numeric(which), which + 1, which(colnames(x$x) == which))
 	coefs <- x$coef
@@ -56,8 +56,8 @@ plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, an
 	}
 	if(main == "method") main <- paste("Fuzzy linear regression using the", toupper(x$method), "method")
 	
-	if(missing(xlab)) { xlab <- colnames(x$x)[xc] }
-	if(missing(ylab)) { ylab <- all.vars(x$call)[1] }
+	if(is.null(xlab)) { xlab <- colnames(x$x)[xc] }
+	if(is.null(ylab)) { ylab <- all.vars(x$call)[1] }
 	
 	graphics::plot(1, type = "n", ylim = ylims, xlim = xlims, xlab = xlab, 
 		 ylab = ylab, main = main, ...)
@@ -97,3 +97,5 @@ plot.fuzzylm = function(x, which = 1, res = 2, col.fuzzy = NA, length = 0.05, an
 	graphics::abline(a = coefs[1,1] - coefs[1,2], b = coefs[2,1] - coefs[2,2], lty = 3, ...)
 	graphics::abline(a = coefs[1,1] + coefs[1,3], b = coefs[2,1] + coefs[2,3], lty = 3, ...)
 }
+
+

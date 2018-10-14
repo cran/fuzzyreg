@@ -20,8 +20,8 @@
 #'   triangular fuzzy numbers. 
 #' @return Returns a \code{fuzzylm} object that includes the model coefficients, limits
 #'   for data predictions from the model and the input data.
-#' @seealso \code{\link{plot.fuzzylm}}, \code{\link{predict.fuzzylm}}, 
-#'   \code{\link{summary.fuzzylm}}
+#' @seealso \code{\link[=plot.fuzzylm]{plot}}, \code{\link[=predict.fuzzylm]{predict}}, 
+#'   \code{\link[=summary.fuzzylm]{summary}}
 #' @references
 #'   Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
 #'   46(3): 141-157.
@@ -45,10 +45,10 @@
 #' data(fuzzydat)
 #' fuzzylm(y ~ x, data = fuzzydat$lee, method = "plrls")
 #' \dontrun{
-#' # returns error due to incorrect number of spreads
+#' # returns an error due to the incorrect number of spreads
 #' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")}
-#' # use the same column name for left and right spread, when the method requests 
-#' # non-symmetric fuzzy numbers, but data specifies symmetric fuzzy numbers 
+#' # use the same column name for the left and right spread, when the method requests 
+#' # non-symmetric fuzzy numbers, but the data specify symmetric fuzzy numbers 
 #' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
 
 

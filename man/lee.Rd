@@ -39,6 +39,11 @@ The function input expects crisp numbers of both the explanatory and response
    
    The h-level is a degree of fitting chosen by the decision maker.
 }
+\examples{
+x <- matrix(c(rep(1, 15), rep(1:3, each = 5)), ncol = 2)
+y <- matrix(c(rnorm(5, 1), rnorm(5, 2), rnorm(5, 3)), ncol = 1)
+plrls(x = x, y = y)
+}
 \references{
 Lee, H. and Tanaka, H. (1999) Fuzzy approximations with non-symmetric fuzzy
    parameters in fuzzy regression analysis. \emph{Journal of the Operations Research
