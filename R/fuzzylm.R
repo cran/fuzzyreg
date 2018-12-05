@@ -9,9 +9,9 @@
 #' @param fuzzy.right.x character string vector specifying column name(s) with the right 
 #'   spread of the fuzzy independent variable(s).
 #' @param fuzzy.left.y character string vector specifying column name(s) with the left 
-#'   spread of the fuzzy dependent variable(s).
+#'   spread of the fuzzy dependent variable.
 #' @param fuzzy.right.y character string vector specifying column name(s) with the right 
-#'   spread of the fuzzy dependent variable(s).
+#'   spread of the fuzzy dependent variable.
 #' @param ... additional parameters used by specific methods.
 #' @details The implemented methods include \code{\link{plrls}} for fitting the fuzzy linear
 #'   regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{fls}} 

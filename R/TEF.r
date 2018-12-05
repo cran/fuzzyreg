@@ -5,7 +5,7 @@
 #' between the estimated and observed fuzzy dependent variables.
 #' @param object a \code{fuzzylm} object.
 #' @param sc scaling constant used for numerical stability when spreads are equal to zero.
-#' @param ... additional arguments passed to the \code{link{integrate}} function.
+#' @param ... additional arguments passed to the \code{integrate} function.
 #' @details The \code{TFN1} and \code{TFN2} can be other objects that can be coerced to
 #'   matrices with three columns.
 #' @return A numeric vector with pairwise differences between the triangular fuzzy

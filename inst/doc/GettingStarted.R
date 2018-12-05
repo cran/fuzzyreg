@@ -1,5 +1,5 @@
 ### R code from vignette source 'GettingStarted.Rnw'
-### Encoding: ISO8859-1
+### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: GettingStarted.Rnw:34-37 (eval = FALSE)
@@ -94,7 +94,7 @@ segments(3,0,2.5,1)
 
 
 ###################################################
-### code chunk number 12: GettingStarted.Rnw:173-180
+### code chunk number 12: GettingStarted.Rnw:174-181
 ###################################################
 require(FuzzyNumbers)
 B1 = FuzzyNumber(0.7, 1.5, 1.5, 1.9,
@@ -106,7 +106,7 @@ B1
 
 
 ###################################################
-### code chunk number 13: GettingStarted.Rnw:189-193
+### code chunk number 13: GettingStarted.Rnw:190-194
 ###################################################
 xc = core(B1)[1]
 l = xc - supp(B1)[1]
@@ -115,20 +115,20 @@ c(xc, l, r)
 
 
 ###################################################
-### code chunk number 14: GettingStarted.Rnw:195-197
+### code chunk number 14: GettingStarted.Rnw:196-198
 ###################################################
 detach("package:FuzzyNumbers", unload=TRUE)
 require(fuzzyreg)
 
 
 ###################################################
-### code chunk number 15: GettingStarted.Rnw:289-290
+### code chunk number 15: GettingStarted.Rnw:292-293
 ###################################################
 fuzzydat$nas
 
 
 ###################################################
-### code chunk number 16: GettingStarted.Rnw:302-305
+### code chunk number 16: GettingStarted.Rnw:305-308
 ###################################################
 f2 = fuzzylm(formula = y ~ x, data = fuzzydat$nas,
              fuzzy.left.x = "xl",
@@ -136,7 +136,7 @@ f2 = fuzzylm(formula = y ~ x, data = fuzzydat$nas,
 
 
 ###################################################
-### code chunk number 17: GettingStarted.Rnw:314-317
+### code chunk number 17: GettingStarted.Rnw:317-320
 ###################################################
 f3 = fuzzylm(y ~ x, data = fuzzydat$nas,
              fuzzy.left.y = "yl",
@@ -144,7 +144,7 @@ f3 = fuzzylm(y ~ x, data = fuzzydat$nas,
 
 
 ###################################################
-### code chunk number 18: GettingStarted.Rnw:332-334
+### code chunk number 18: GettingStarted.Rnw:335-337
 ###################################################
 pred2 = predict(f2)
 pred2$y
@@ -159,7 +159,7 @@ pred2$y
 
 
 ###################################################
-### code chunk number 20: GettingStarted.Rnw:365-366
+### code chunk number 20: GettingStarted.Rnw:368-369
 ###################################################
 par(mfrow=c(1,2))
 plot(f2, res=20, col.fuzzy="lightblue", main = "f2 - MOFLR")
@@ -167,7 +167,7 @@ plot(f3, res=20, col.fuzzy = "lightblue", main = "f3 - FLS")
 
 
 ###################################################
-### code chunk number 21: GettingStarted.Rnw:376-378
+### code chunk number 21: GettingStarted.Rnw:379-381
 ###################################################
 TEF(f2)
 TEF(f3)
@@ -190,7 +190,7 @@ TEF(f3)
 
 
 ###################################################
-### code chunk number 23: GettingStarted.Rnw:413-414
+### code chunk number 23: GettingStarted.Rnw:416-417
 ###################################################
 par(mfrow=c(1,2))
 f4 = fuzzylm(y~x, fuzzydat$lee, method="plrls")
@@ -206,7 +206,7 @@ lines(newx, conf1[,3], lty=2)
 
 
 ###################################################
-### code chunk number 24: GettingStarted.Rnw:448-449 (eval = FALSE)
+### code chunk number 24: GettingStarted.Rnw:452-453 (eval = FALSE)
 ###################################################
 ## ?plrls
 

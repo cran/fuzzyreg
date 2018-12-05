@@ -60,3 +60,13 @@ test_that("correct TEF for TFN using PLR by Tanaka et al.", {
                5.6,
                tolerance = 1e-2)
 })
+
+test_that("correct PLRLS with bats data", {
+
+  data(bats)
+  dat = bats[!(bats$MAST < 0 & bats$temperature > 7),]
+  f = fuzzylm(temperature ~ MAST, dat, "plrls", h = 0.01, k1 = 5)
+  expect_equivalent(f$coef,
+                    matrix(c(2.51,4.15,3.24,.61,0,.03), ncol = 3, byrow = TRUE),
+                    tolerance = 1e-2)
+})

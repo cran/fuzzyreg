@@ -2,7 +2,7 @@
 % Please edit documentation in R/dom.r
 \name{dom}
 \alias{dom}
-\title{Degree of Membership of a Triangular Fuzzy Number}
+\title{Real Value Degree of Membership to a Triangular Fuzzy Number}
 \usage{
 dom(x, TFN)
 }
@@ -15,8 +15,9 @@ dom(x, TFN)
 Returns a numeric in interval \code{[0,1]}.
 }
 \description{
-Calculates the degree of membership of a real number to the fuzzy set represented by a
-triangular fuzzy number defined by its central value and the left and right spreads.
+Calculates the degree of membership of a real number to a 
+triangular fuzzy number. The fuzzy number is defined by its 
+central value and the left and right spreads.
 }
 \examples{
 x <- seq(from = 0, to = 2, length.out = 10)

@@ -1,7 +1,8 @@
-#' Degree of Membership of a Triangular Fuzzy Number
+#' Real Value Degree of Membership to a Triangular Fuzzy Number
 #'
-#' Calculates the degree of membership of a real number to the fuzzy set represented by a
-#' triangular fuzzy number defined by its central value and the left and right spreads.
+#' Calculates the degree of membership of a real number to a 
+#' triangular fuzzy number. The fuzzy number is defined by its 
+#' central value and the left and right spreads.
 #' @param x a numeric vector.
 #' @param TFN a numeric vector of length 3.
 #' @return Returns a numeric in interval \code{[0,1]}.

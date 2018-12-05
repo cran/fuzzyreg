@@ -11,7 +11,7 @@ TEF(object, sc = 1e-06, ...)
 
 \item{sc}{scaling constant used for numerical stability when spreads are equal to zero.}
 
-\item{...}{additional arguments passed to the \code{link{integrate}} function.}
+\item{...}{additional arguments passed to the \code{integrate} function.}
 }
 \value{
 A numeric vector with pairwise differences between the triangular fuzzy

@@ -104,7 +104,7 @@ the distance from the central value to a value $x_l$ where $\mu(x_l)=0$ and $x_l
 The left spread is thus equal to $x_c-x_l$. The third element of the TFN is the right
 spread, i.e. the distance from the central value to a value $x_r$ where $\mu(x_r)=0$ and
 $x_r>x_c$. The right spread is equal to $x_r-x_c$. The central value $x_c$ of the TFN is
-its core, and the interval $(x_l,x_r)$t is he support of the TFN.
+its core, and the interval $(x_l,x_r)$ is the support of the TFN.
 
 <<TFNfig, echo=FALSE, eval=FALSE>>=
 plot(1, type = "n", xlim = c(0,3), ylim=c(0,1.1), xlab = expression(italic("x")),
@@ -145,8 +145,9 @@ C = c(2.5, 0.5, 0.5)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 When the collected data do not contain spreads, we can directly apply the PLRLS method to model
-the relationship in the fuzzy set framework (Chapter 1: Quick start). For other methods,
-the spreads must be imputed.
+the relationship between the variables in the fuzzy set framework (Chapter 1: Quick start). 
+For other methods, the spreads must be imputed.
+
 \begin{itemize}
 \item{The TFN might have spreads equal to 0 as shown for $A$ in
 Figure~\ref{fig:TFN}.}
@@ -197,7 +198,8 @@ detach("package:FuzzyNumbers", unload=TRUE)
 require(fuzzyreg)
 @
 
-When the trapezoidal fuzzy number has the core wider then one point, we need to approximate a TFN. The simplest method calculates the mean of the core as
+When the trapezoidal fuzzy number has the core wider than one point, we need to approximate 
+a TFN. The simplest method calculates the mean of the core as
 \texttt{mean(core(B1))}.
 
 We can also defuzzify the fuzzy number and approximate
@@ -245,7 +247,8 @@ data contain symmetric TFNs.
 
 A possibilistic linear regression (PLR) is a paradigm of whole family of possibilistic-based fuzzy
 estimators. It was proposed for crisp observations of the explanatory variables and symmetric fuzzy
-observations of the response variable. \texttt{fuzzyreg} uses the min problem implementation \cite{ref:Tanaka1989} that estimates the regression coefficients in such a way that the spreads for the model
+observations of the response variable. \texttt{fuzzyreg} uses the min problem implementation 
+\cite{ref:Tanaka1989} that estimates the regression coefficients in such a way that the spreads for the model
 response are minimal needed to include all observed data. Consequently, the outliers in the data will
 increase spreads in the estimated coefficients.
 
@@ -283,7 +286,7 @@ respective spreads for all variables that are TFNs.
 
 The example data from Nasrabadi et al. \cite{ref:Nasrabadi2005} contain symmetric TFNs.
 The spreads for the independent
-variable $x$ in the column \texttt{xl} and all values are equal to 0. The spreads for the
+variable $x$ are in the column \texttt{xl} and all values are equal to 0. The spreads for the
 dependent variable $y$ are in the column \texttt{yl}.
 
 <<>>=
@@ -306,7 +309,7 @@ f2 = fuzzylm(formula = y ~ x, data = fuzzydat$nas,
 @
 
 Calls to methods that analyse non-symmetric TFNs must include both arguments for the left and right
-spreads, respectively. The arguments specifying spreads for the dependent varable are
+spreads, respectively. The arguments specifying spreads for the dependent variable are
 \texttt{fuzzy.left.y} and \texttt{fuzzy.right.y}. However, if we wish to analyse symmetric TFNs
 using a method for non-symmetric TFNs,
 both argumets might call the same column with the values for the spreads.
@@ -320,7 +323,7 @@ f3 = fuzzylm(y ~ x, data = fuzzydat$nas,
 As the spreads are included in the model using the column names, the function cannot check
 whether the provided information is correct. The issue gains importance when developing a multiple
 fuzzy regression model. The user must ascertain that the order of the column names for
-the spreads correspond to the order of the variables in the \texttt{formula} argument.
+the spreads corresponds to the order of the variables in the \texttt{formula} argument.
 
 The fuzzy regression models can be used to predict new data within the range of data used to
 infer the model with the \texttt{predict} function. The reason for disabling extrapolations from
@@ -349,7 +352,7 @@ between membership values of the observed and predicted membership functions
 In Figure~\ref{fig:TEF}, the points represent central values of the observations and
 whiskers indicate their spreads. The shaded area shows the model predictions with the
 degree of membership greater than zero. We can
-compare the models numerically using the total error of fit $E$ \cite{ref:KimBishu1998}
+compare the models numerically using the total error of fit $\sum{E}$ \cite{ref:KimBishu1998}
 with the \texttt{TEF()} function:
 
 <<figTEF, echo=FALSE, eval=FALSE>>=
@@ -367,7 +370,7 @@ plot(f3, res=20, col.fuzzy = "lightblue", main = "f3 - FLS")
 @
 \end{center}
 \caption{Comparison of fuzzy regression models fitted with the MOFLR and FLS methods. The FLS
-   method has lower total error of fit $E$ and thus better reflects the observations.}
+   method has lower total error of fit $\sum{E}$ and thus better reflects the observations.}
 \label{fig:TEF}
 \end{figure}
 \setkeys{Gin}{width=.8\textwidth}
@@ -378,7 +381,7 @@ TEF(f2)
 TEF(f3)
 @
 
-Lower values of $E$ mean that the predicted TFNs fit better with the observed TFNs.
+Lower values of $\sum{E}$ mean that the predicted TFNs fit better with the observed TFNs.
 
 
 
@@ -390,8 +393,8 @@ Lower values of $E$ mean that the predicted TFNs fit better with the observed TF
 
 When comparing the fuzzy linear regression and a statistical linear regression models, we can observe
 that while the fuzzy linear regression shows something akin to a confidence interval,
-the interval differs from the
-confidence intervals derived from a statistical linear regression model (Figure~\ref{fig:compare}).
+the interval differs from the confidence intervals derived from a statistical linear 
+regression model (Figure~\ref{fig:compare}).
 
 <<regfig, eval=FALSE, echo=F>>=
 par(mfrow=c(1,2))
@@ -415,7 +418,8 @@ lines(newx, conf1[,3], lty=2)
 @
 \end{center}
 \caption{Fuzzy and statistical linear regression. Fuzzy regression displays the central value and
-the support boundaries determined by the left and right spread (PLRLS - left panel). Statistical least-squares regression
+the support boundaries determined by the left and right spread (PLRLS - left panel). 
+Statistical least-squares regression
 shows the 95\% confidence interval for the regression fit (LS - right panel).}
 \label{fig:compare}
 \end{figure}

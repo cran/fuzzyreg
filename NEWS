@@ -1,7 +1,13 @@
+fuzzyreg v. 0.4.1, released 2018-12-04
+
+* Added bats data
+* Minor fixes
+
+=====================================
 fuzzyreg v. 0.4, released 2018-10-15
 
 * Added function TEF to estimate total error of fit for model comparisons
-* Added function dom to calculate degree of membership for a triangular fuzzy number
+* Added function dom to calculate degree of membership for a real number to a triangular fuzzy number
 * Added unit tests
 * Added vignette
 

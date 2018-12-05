@@ -40,6 +40,10 @@ The function input expects both the response and the predictors in form of
    The Nasrabadi et al.'s method can process datasets with multiple outliers. Values
    \code{omega>0.5} decrease weight of outliers on the solution.
 }
+\note{
+Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
+   \code{method = "moflr"}.
+}
 \examples{
 data(fuzzydat)
 fuzzylm(y~x, fuzzydat$nas, "moflr", "xl", , "yl")

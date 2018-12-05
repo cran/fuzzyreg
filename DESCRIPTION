@@ -1,7 +1,7 @@
 Package: fuzzyreg
 Title: Fuzzy Linear Regression
-Version: 0.4
-Date: 2018-10-15
+Version: 0.4.1
+Date: 2018-12-03
 Authors@R: c(person(given = "Pavel", family = "Skrabanek", email = "pavel.skrabanek@vut.cz", 
     role = c("aut", "cph")), 
     person(given = "Natalia", family = "Martinkova", email = "martinkova@ivb.cz", 
@@ -25,10 +25,10 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: limSolve, quadprog, stats, graphics, grDevices
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: testthat, FuzzyNumbers
 BuildVignettes: true
 NeedsCompilation: no
-Packaged: 2018-10-14 17:16:31 UTC; natal
+Packaged: 2018-12-05 11:35:10 UTC; martinkova
 Repository: CRAN
-Date/Publication: 2018-10-14 17:40:03 UTC
+Date/Publication: 2018-12-05 11:50:11 UTC

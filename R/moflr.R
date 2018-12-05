@@ -23,6 +23,8 @@
 #'    \code{omega>0.5} decrease weight of outliers on the solution.
 #' @inherit fuzzylm return
 #' @inherit plrls seealso
+#' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
+#'    \code{method = "moflr"}.
 #' @references Nasrabadi, M. M., Nasrabadi, E. and Nasrabady, A. R. (2005) Fuzzy linear 
 #'    regression analysis: a multi-objective programming approach. \emph{Applied Mathematics
 #'    and Computation} 163: 245-251.

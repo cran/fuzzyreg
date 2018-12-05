@@ -22,10 +22,10 @@ spread of the fuzzy independent variable(s).}
 spread of the fuzzy independent variable(s).}
 
 \item{fuzzy.left.y}{character string vector specifying column name(s) with the left 
-spread of the fuzzy dependent variable(s).}
+spread of the fuzzy dependent variable.}
 
 \item{fuzzy.right.y}{character string vector specifying column name(s) with the right 
-spread of the fuzzy dependent variable(s).}
+spread of the fuzzy dependent variable.}
 
 \item{...}{additional parameters used by specific methods.}
 }
