@@ -47,9 +47,10 @@
 #' @keywords datasets
 #' @source Martinkova, N., Pikula, J., Zukal, J., Kovacova, V., Bandouchova, H., 
 #'   Bartonicka, T., Botvinkin, A.D., Brichta, J., Dundarova, H., Kokurewicz, T., 
-#'   Irwin, N.R., Linhart, P., Orlov, O.L., Piacek, V., Skrabanek, P., Tiunov, M.P. and
-#'   Zahradnikova, A., Jr. (2018) Hibernation temperature-dependent \emph{Pseudogymnoascus 
-#'   destructans} infection intensity in Palearctic bats. \emph{Virulence} 9: 1734-1750.
+#'   Irwin, N.R., Linhart, P., Orlov, O.L., Piacek, V., Skrabanek, P., Tiunov, 
+#'   M.P. and Zahradnikova, A., Jr. (2018) Hibernation temperature-dependent 
+#'   \emph{Pseudogymnoascus destructans} infection intensity in Palearctic bats. 
+#'   \emph{Virulence} 9: 1734-1750.
 #' 
 #'   Hijmans, R.J., Cameron, S.E., Parra, J.L., Jones, P.G. and Jarvis, A. (2005) Very 
 #'   high resolution interpolated climate surfaces for global land areas. 
@@ -58,6 +59,7 @@
 #' data(bats)
 #' # remove outlier
 #' dat <- bats[!(bats$MAST < 0 & bats$temperature > 7), ]
+#' # fuzzy linear regression model as published
 #' fit <- fuzzylm(temperature ~ MAST, data = dat, method = "plrls", h = 0.01, k1 = 5)
 #' plot(fit, res = 30, col = "orange")
 "bats"

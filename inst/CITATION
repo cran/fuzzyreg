@@ -8,3 +8,14 @@ bibentry(bibtype = "Manual",
 		 note = note,
 		 url = "https://CRAN.R-project.org/package=fuzzyreg")
 		 
+bibentry(bibtype = "inproceedings",
+         title = "{fuzzyreg}: An R package for Fuzzy Linear Regression",
+		 author = c(person("Natalia", "Martinkova"), person("Pavel", "Skrabanek")),
+         year = 2018,
+         booktitle = "ENBIK2018 Conference Proceedings",
+         editor = c(person("Petr", "Cech"), person("Daniel", "Svozil")),
+         publisher = "University of Chemistry and Technology",
+         address = "Prague",
+         pages = "7",
+         isbn = "978-80-7592-017-1"
+         )

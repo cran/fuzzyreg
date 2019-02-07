@@ -56,9 +56,3 @@ plr = function(x, y, h = 0){
 	fuzzy
 }
 
-#' @inherit plr
-#' @export
-tanaka = function(x, y, h = 0){
-	.Deprecated("plr")
-	plr(x = x, y = y, h = h)
-}

@@ -61,6 +61,8 @@ test_that("correct TEF for TFN using PLR by Tanaka et al.", {
                tolerance = 1e-2)
 })
 
+
+
 test_that("correct PLRLS with bats data", {
 
   data(bats)
@@ -70,3 +72,37 @@ test_that("correct PLRLS with bats data", {
                     matrix(c(2.51,4.15,3.24,.61,0,.03), ncol = 3, byrow = TRUE),
                     tolerance = 1e-2)
 })
+
+test_that("correct fuzzify for mean", {
+
+   f = fuzzify(1:3)
+   expect_equivalent(f,
+                     data.frame(matrix(c(2, 1, 1, 1), nrow = 1)),
+                     tolerance = 1e-6)
+})
+
+test_that("correct fuzzify for median non-symmetric", {
+
+   f = fuzzify(c(1:3, 5), method = "median")
+   expect_equivalent(f,
+                     data.frame(matrix(c(2.5, .75, 1, 1), nrow = 1)),
+                     tolerance = 1e-6)
+})
+
+test_that("correct fuzzify for err", {
+
+   expect_equivalent(fuzzify(1:2, method = "error", err = 1),
+                     data.frame(matrix(c(1, 2, 1, 1, 1, 1, 1, 1), nrow = 2)),
+                     tolerance = 1e-6)
+   expect_equivalent(fuzzify(1:2, method = "error", err = 1:2),
+                     data.frame(matrix(c(1, 2, 1, 2, 1, 2, 1, 1), nrow = 2)),
+                     tolerance = 1e-6)
+   expect_equivalent(fuzzify(1:2, method = "error", err = 1:4),
+                     data.frame(matrix(c(1, 2, 1, 2, 3, 4, 1, 1), nrow = 2)),
+                     tolerance = 1e-6)
+   expect_equivalent(fuzzify(1:2, y = 1:2, method = "error", err = 1:4),
+                     data.frame(matrix(c(1, 2, 1, 2, 3, 4, 1, 2), nrow = 2)),
+                     tolerance = 1e-6)
+})
+
+

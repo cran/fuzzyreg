@@ -6,11 +6,16 @@
 #' @param object a \code{fuzzylm} object.
 #' @param sc scaling constant used for numerical stability when spreads are equal to zero.
 #' @param ... additional arguments passed to the \code{integrate} function.
-#' @details The \code{TFN1} and \code{TFN2} can be other objects that can be coerced to
-#'   matrices with three columns.
-#' @return A numeric vector with pairwise differences between the triangular fuzzy
+#' @details Calculates \eqn{\sum{E}}{sum(E)}, where \eqn{E}{E} is the difference in 
+#'   membership functions between two triangular fuzzy numbers. Here, between the 
+#'   observation and the prediction from a fuzzy regression model \code{fuzzylm}.
+#' @note \code{TEF} is not suitable for assessing fuzzy linear regression models that were
+#'   fitted from crisp input data. Such data will result in division by zero. The scaling
+#'   constant \code{sc} numerically allows the calculation to proceed, but it is not 
+#'   advisable. Use \code{\link{GOF}} instead.
+#' @return A numeric with sum of pairwise differences between the triangular fuzzy
 #'   numbers.
-#' @seealso \code{\link{fuzzylm}}
+#' @seealso \code{\link{fuzzylm}}, \code{\link{GOF}}
 #' @references Kim B. and Bishu R. R. (1998) Evaluation of fuzzy linear regression
 #'   models by comparing membership functions. \emph{Fuzzy Sets and Systems}
 #'   100: 343-352.

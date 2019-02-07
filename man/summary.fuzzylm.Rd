@@ -13,7 +13,7 @@
 }
 \value{
 Returns a list with models for the central tendency and spreads from the fuzzy
-  linear regression.
+  linear regression, total error of fit of the model and a goodness-of-fit measure.
 }
 \description{
 Calculates the summary from the \code{fuzzylm} object.
@@ -23,5 +23,8 @@ data(fuzzydat)
 f <- fuzzylm(y ~ x, fuzzydat$lee)
 sum.f <- summary(f)
 sum.f
+}
+\seealso{
+\code{\link{TEF}}, \code{\link{GOF}}
 }
 \keyword{fuzzy}

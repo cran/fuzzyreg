@@ -76,7 +76,7 @@ oplr <- function(x, y, h = 0){
 	ot1 <- ri > (Q[2] + 1.5 * iqr)
 	ot2 <- ri < (Q[1] - 1.5 * iqr)
 	
-	if(sum(ot1) > 1 | sum(ot2) > 1 | sum(ot1, ot2) > 1){ stop("Multiple outliers detected. Revise the data or use method = \"nasrabadi\"") }
+	if(sum(ot1) > 1 | sum(ot2) > 1 | sum(ot1, ot2) > 1){ stop("Multiple outliers detected. Revise the data or use method = \"moflr\"") }
 	if(max(ot1) == 1){ 
 		res <- Ai[ot1, ] 
 		warning("Deleting one outlier (ot1)")
@@ -103,9 +103,3 @@ oplr <- function(x, y, h = 0){
 }
 
 
-#' @inherit oplr
-#' @export
-hung = function(x, y, h = 0){
-	.Deprecated("oplr")
-	oplr(x = x, y = y, h = h)
-}

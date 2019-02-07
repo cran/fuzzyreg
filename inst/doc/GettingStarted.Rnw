@@ -1,10 +1,10 @@
 \documentclass[a4paper]{article}
 
-%\VignetteIndexEntry{Fitting Fuzzy Linear Regression Models in R with fuzzyreg}
+%\VignetteIndexEntry{Getting Started with Fitting Fuzzy Linear Regression Models in R}
 %\VignettePackage{fuzzyreg}
 %\VignetteDepends{FuzzyNumbers}
 
-\title{Fitting Fuzzy Linear Regression Models in \texttt{R} with \texttt{fuzzyreg}}
+\title{Getting Started with Fitting Fuzzy Linear Regression Models in \texttt{R}}
 \author{Pavel \v{S}krab\'{a}nek and Nat\'{a}lia Mart\'{i}nkov\'{a}}
 
 \begin{document}
@@ -443,8 +443,9 @@ in the fuzzy regression model plots).
 To cite \texttt{fuzzyreg}, include the reference to the software and the used method.
 
 \begin{quote}
-\v{S}krab\'{a}nek P. and Mart\'{i}nkov\'{a} N. 2018. \emph{fuzzyreg: Fuzzy Linear Regression. R
-package version 0.4}. Available from: https://CRAN.R-project.org/package=fuzzyreg.
+\v{S}krab\'{a}nek P. and Mart\'{i}nkov\'{a} N. 2018. fuzzyreg: An R Package for 
+Fuzzy Linear Regression. In: \v{C}ech P., Svozil D. (eds.), \emph{ENBIK2018 Conference 
+Proceedings, Prague}, 7.
 \end{quote}
 
 The references for the specific methods are accessible through the method help, e.g.

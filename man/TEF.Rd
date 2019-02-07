@@ -14,7 +14,7 @@ TEF(object, sc = 1e-06, ...)
 \item{...}{additional arguments passed to the \code{integrate} function.}
 }
 \value{
-A numeric vector with pairwise differences between the triangular fuzzy
+A numeric with sum of pairwise differences between the triangular fuzzy
   numbers.
 }
 \description{
@@ -23,8 +23,15 @@ concept of difference in membership functions of triangular fuzzy numbers
 between the estimated and observed fuzzy dependent variables.
 }
 \details{
-The \code{TFN1} and \code{TFN2} can be other objects that can be coerced to
-  matrices with three columns.
+Calculates \eqn{\sum{E}}{sum(E)}, where \eqn{E}{E} is the difference in 
+  membership functions between two triangular fuzzy numbers. Here, between the 
+  observation and the prediction from a fuzzy regression model \code{fuzzylm}.
+}
+\note{
+\code{TEF} is not suitable for assessing fuzzy linear regression models that were
+  fitted from crisp input data. Such data will result in division by zero. The scaling
+  constant \code{sc} numerically allows the calculation to proceed, but it is not 
+  advisable. Use \code{\link{GOF}} instead.
 }
 \examples{
 data(fuzzydat)
@@ -37,5 +44,5 @@ Kim B. and Bishu R. R. (1998) Evaluation of fuzzy linear regression
   100: 343-352.
 }
 \seealso{
-\code{\link{fuzzylm}}
+\code{\link{fuzzylm}}, \code{\link{GOF}}
 }

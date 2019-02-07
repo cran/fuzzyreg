@@ -80,10 +80,3 @@ plrls = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
 	fuzzy
 }
 
-#' @inherit plrls
-#' @export
-
-lee = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
-	.Deprecated("plrls")
-	plrls(x = x, y = y, h = h, k1 = k1, k2 = k2, epsilon = epsilon)
-}

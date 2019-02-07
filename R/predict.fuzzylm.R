@@ -31,13 +31,14 @@ predict.fuzzylm <- function(object, newdata, ...){
 			stop(gettextf("'%s' is out of range. Prediction from the fuzzy linear model is defined only for data ranges used to fit the model.", v))
 		}
 	}
-	s <- summary(object)
-	newdata <- newdata[, match(s$xvars, colnames(newdata)), drop = FALSE]
-	n <- s$n
+	xvars = colnames(object$x)
+	xvars = xvars[2:length(xvars)]
+	newdata <- newdata[, match(xvars, colnames(newdata)), drop = FALSE]
+	n <- length(xvars)
 	ct <- NULL
 	fy <- matrix(rep(object$coef[1,], nrow(newdata)), ncol = 3, byrow = TRUE, 
 				 dimnames = list(rownames(newdata), colnames(object$coef)))
-	if(object$method %in% c("PLRLS", "FLS", "OPLR", "PLR")) {
+	if(object$method %in% c("PLRLS", "FLS", "OPLR", "PLR", "FLAR")) {
 		for(i in 2:nrow(object$coef)){
 			for(j in 1:nrow(newdata)){
 				cti <- prodSfuzzy(y = object$coef[i,], x = newdata[j, i-1])

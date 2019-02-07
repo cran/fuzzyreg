@@ -71,6 +71,9 @@ Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
   Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
   regression analysis for fuzzy data. \emph{European Journal of Operational 
   Research} 40: 389-396.
+
+  Zeng, W., Feng, Q. and Li, J. (2017) Fuzzy least absolute linear regression. 
+  \emph{Applied Soft Computing} 52: 1009-1019.
 }
 \seealso{
 \code{\link[=plot.fuzzylm]{plot}}, \code{\link[=predict.fuzzylm]{predict}}, 

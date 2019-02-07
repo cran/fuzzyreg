@@ -40,6 +40,9 @@
 #'   Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
 #'   regression analysis for fuzzy data. \emph{European Journal of Operational 
 #'   Research} 40: 389-396.
+#'
+#'   Zeng, W., Feng, Q. and Li, J. (2017) Fuzzy least absolute linear regression. 
+#'   \emph{Applied Soft Computing} 52: 1009-1019.
 #' @export
 #' @examples
 #' data(fuzzydat)
@@ -79,11 +82,12 @@ fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.r
 	y <- stats::model.response(mf, "numeric")
 	x <- stats::model.matrix(stats::as.formula(formula), data = mf)
 	# check method
-	methods <- c("plrls", "fls", "oplr", "moflr", "plr", "diamond", "hung", "lee", "nasrabadi", "tanaka")
+	methods <- c("plrls", "flar", "fls", "oplr", "moflr", "plr", "diamond", "hung", "lee", "nasrabadi", "tanaka")
 	if(!any(grepl(tolower(method), methods)))
 		stop(gettextf("method '%s' is not supported.", method))
 	method <- methods[methods %in% tolower(sub("-", "", method))]
 	coefs <- switch(method, plrls = plrls(x = x, y = y, ...),
+	                        flar = flar(x = x, y = y, ...),
 							fls = fls(x = x, y = y, ...),
 							oplr = oplr(x = x, y = y, ...),
 							moflr = moflr(x = x, y = y, ...),

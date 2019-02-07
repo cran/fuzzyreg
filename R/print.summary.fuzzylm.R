@@ -24,6 +24,8 @@ print.summary.fuzzylm = function(x, ...){
 	cat(x$yvars[1], "=", x$c[1] - x$l[1], "+", 
 		paste(x$c[2:n] - x$l[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")
 	cat("\n\nUpper boundary of the model support interval:\n")
-	cat(x$yvars[1], "=", x$c[1] + x$l[1], "+", 
-		paste(x$c[2:n] + x$l[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")
+	cat(x$yvars[1], "=", x$c[1] + x$r[1], "+", 
+		paste(x$c[2:n] + x$r[2:n], x$xvars[1:(n-1)], sep=" * ", collapse = " + "), sep = " ")
+	cat("\n\nThe total error of fit:", round(x$TEF, 2))
+	cat("\nThe mean squared distance between response and prediction:", round(x$GOF, 2))
 }

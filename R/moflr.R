@@ -83,9 +83,3 @@ moflr <- function(x, y, omega = 0.5, sc = 1e-5){
 }
 
 
-#' @inherit moflr
-#' @export
-nasrabadi <- function(x, y, omega = 0.5, sc = 1e-5){
-	.Deprecated("moflr")
-	moflr(x = x, y = y, omega = omega, sc = sc)
-}

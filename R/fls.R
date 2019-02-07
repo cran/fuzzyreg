@@ -63,9 +63,3 @@ fls <- function(x, y){
 }
 
 
-#' @inherit fls
-#' @export
-diamond <- function(x, y){
-	.Deprecated("fls")
-	fls(x = x, y = y)
-}

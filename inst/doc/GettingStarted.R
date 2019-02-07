@@ -1,5 +1,5 @@
 ### R code from vignette source 'GettingStarted.Rnw'
-### Encoding: UTF-8
+### Encoding: ISO8859-1
 
 ###################################################
 ### code chunk number 1: GettingStarted.Rnw:34-37 (eval = FALSE)
@@ -206,7 +206,7 @@ lines(newx, conf1[,3], lty=2)
 
 
 ###################################################
-### code chunk number 24: GettingStarted.Rnw:452-453 (eval = FALSE)
+### code chunk number 24: GettingStarted.Rnw:453-454 (eval = FALSE)
 ###################################################
 ## ?plrls
 

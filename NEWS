@@ -1,4 +1,14 @@
-fuzzyreg v. 0.4.1, released 2018-12-04
+fuzzyreg v. 0.5, released 2019-02-06
+
+* Added model comparison measures to summary
+* Added method FLAR
+* Added functions GOF, fuzzify, coef
+* Updates in documentation
+* Fixed bugs
+* Removed functions deprecated in version 0.3
+
+=======================================
+fuzzyreg v. 0.4.1, released 2018-12-05
 
 * Added bats data
 * Minor fixes
