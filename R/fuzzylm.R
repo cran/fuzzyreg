@@ -77,8 +77,8 @@ fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.r
 						  sprintf("cbind(%s) ~ %s", toString(lhs), paste(rhs, collapse = " + ")),
 						  sprintf("%s ~ %s", toString(lhs), paste(rhs, collapse = " + ")))
 		mf <- stats::model.frame(formula, data = data)
-  	    if(attr(stats::terms(mf), "intercept") == 0) stop("fuzzy regression through origin is not supported. Use intercept")
 	}
+	if(attr(stats::terms(mf), "intercept") == 0) stop("fuzzy regression through origin is not supported. Use intercept")
 	y <- stats::model.response(mf, "numeric")
 	x <- stats::model.matrix(stats::as.formula(formula), data = mf)
 	# check method

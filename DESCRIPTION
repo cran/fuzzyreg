@@ -1,7 +1,7 @@
 Package: fuzzyreg
 Title: Fuzzy Linear Regression
-Version: 0.5
-Date: 2019-02-06
+Version: 0.5.1
+Date: 2019-06-05
 Authors@R: c(person(given = "Pavel", family = "Skrabanek", email = "pavel.skrabanek@vut.cz", 
     role = c("aut", "cph")), 
     person(given = "Natalia", family = "Martinkova", email = "martinkova@ivb.cz", 
@@ -30,6 +30,6 @@ RoxygenNote: 6.1.1
 Suggests: testthat, FuzzyNumbers
 BuildVignettes: true
 NeedsCompilation: no
-Packaged: 2019-02-07 08:00:03 UTC; natal
+Packaged: 2019-06-06 05:16:25 UTC; martinkova
 Repository: CRAN
-Date/Publication: 2019-02-07 14:03:27 UTC
+Date/Publication: 2019-06-06 07:50:14 UTC

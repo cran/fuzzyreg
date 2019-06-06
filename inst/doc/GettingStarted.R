@@ -1,5 +1,5 @@
 ### R code from vignette source 'GettingStarted.Rnw'
-### Encoding: ISO8859-1
+### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: GettingStarted.Rnw:34-37 (eval = FALSE)

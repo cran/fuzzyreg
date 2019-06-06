@@ -40,12 +40,6 @@ plrls = function(x, y, h = 0, k1 = 1, k2 = 1, epsilon = 1e-5){
 	X <- x
 	y <- as.matrix(y)
 	vars <- colnames(x)
-	if(n != 2) {
-		warning("Regression through origin is not supported. Adding intercept")
-		X <- cbind(rep(1, m), x)
-		vars <- c("(Intercept)", vars)
-		n <- ncol(X)
-	}
 	j <- matrix(1, ncol = 1, nrow = m)
 	X.abs <- abs(X)
 	f1 <- -2 * k1 * t(X) %*% y

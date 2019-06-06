@@ -76,3 +76,9 @@ test_that("warning on wordy dimnames in fuzzify", {
   expect_warning(fuzzify(1:3, method = "med", dimnames = list(c("a", "b"), "c")),
                  "first variable name")
 })
+
+test_that("error on regression without intercept", {
+
+	expect_error(fuzzylm(y ~ x - 1, data = fuzzydat$lee, method = "plrls"),
+                "intercept")
+})
