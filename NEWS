@@ -1,5 +1,13 @@
-fuzzyreg v. 0.5.1, released 2019-06-05
+fuzzyreg v. 0.5.2, released 2021-11-11
 
+* Updated citation
+* Updated documentation
+* Skipped TEF test on M1 Mac
+
+=======================================
+fuzzyreg v. 0.5.1, released 2019-06-06
+
+* Added an option to silence warnings in fuzzylm
 * Fixed bugs with multiple fuzzy regression models
 
 =====================================

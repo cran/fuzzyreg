@@ -4,14 +4,22 @@
 \alias{fuzzylm}
 \title{Fuzzy Linear Regression}
 \usage{
-fuzzylm(formula, data, method = "plrls", fuzzy.left.x = NULL,
-  fuzzy.right.x = NULL, fuzzy.left.y = NULL, fuzzy.right.y = NULL,
-  ...)
+fuzzylm(
+  formula,
+  data,
+  method = "plrls",
+  fuzzy.left.x = NULL,
+  fuzzy.right.x = NULL,
+  fuzzy.left.y = NULL,
+  fuzzy.right.y = NULL,
+  silent = FALSE,
+  ...
+)
 }
 \arguments{
 \item{formula}{a model formula.}
 
-\item{data}{a data.frame, containing the variables in formula.}
+\item{data}{a data.frame, containing the variables used in formula.}
 
 \item{method}{method for fitting of the fuzzy linear model.}
 
@@ -27,7 +35,11 @@ spread of the fuzzy dependent variable.}
 \item{fuzzy.right.y}{character string vector specifying column name(s) with the right 
 spread of the fuzzy dependent variable.}
 
-\item{...}{additional parameters used by specific methods.}
+\item{silent}{logical whether warnings should be printed.}
+
+\item{...}{additional parameters used by specific methods, check functions 
+\code{\link{moflr}}, \code{\link{oplr}}, \code{\link{plr}}, and \code{\link{plrls}}
+for full list of optional method-specific arguments.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
@@ -48,7 +60,8 @@ data(fuzzydat)
 fuzzylm(y ~ x, data = fuzzydat$lee, method = "plrls")
 \dontrun{
 # returns an error due to the incorrect number of spreads
-fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")}
+fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")
+}
 # use the same column name for the left and right spread, when the method requests 
 # non-symmetric fuzzy numbers, but the data specify symmetric fuzzy numbers 
 fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl")

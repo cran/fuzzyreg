@@ -4,8 +4,7 @@
 \alias{fuzzify}
 \title{Convert Real Value Numbers to Triangular Fuzzy Numbers}
 \usage{
-fuzzify(x, y = NULL, method = "mean", err = 0, dimnames = list("x",
-  "y"), ...)
+fuzzify(x, y = NULL, method = "mean", err = 0, dimnames = list("x", "y"), ...)
 }
 \arguments{
 \item{x}{numeric vector.}

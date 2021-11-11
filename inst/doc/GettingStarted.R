@@ -1,5 +1,4 @@
 ### R code from vignette source 'GettingStarted.Rnw'
-### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: GettingStarted.Rnw:34-37 (eval = FALSE)
@@ -117,7 +116,7 @@ c(xc, l, r)
 ###################################################
 ### code chunk number 14: GettingStarted.Rnw:196-198
 ###################################################
-detach("package:FuzzyNumbers", unload=TRUE)
+detach("package:FuzzyNumbers", unload = TRUE)
 require(fuzzyreg)
 
 
@@ -153,21 +152,23 @@ pred2$y
 ###################################################
 ### code chunk number 19: figTEF (eval = FALSE)
 ###################################################
+## oldpar <- par()
 ## par(mfrow=c(1,2))
 ## plot(f2, res=20, col.fuzzy="lightblue", main = "f2 - MOFLR")
 ## plot(f3, res=20, col.fuzzy = "lightblue", main = "f3 - FLS")
 
 
 ###################################################
-### code chunk number 20: GettingStarted.Rnw:368-369
+### code chunk number 20: GettingStarted.Rnw:369-370
 ###################################################
+oldpar <- par()
 par(mfrow=c(1,2))
 plot(f2, res=20, col.fuzzy="lightblue", main = "f2 - MOFLR")
 plot(f3, res=20, col.fuzzy = "lightblue", main = "f3 - FLS")
 
 
 ###################################################
-### code chunk number 21: GettingStarted.Rnw:379-381
+### code chunk number 21: GettingStarted.Rnw:380-382
 ###################################################
 TEF(f2)
 TEF(f3)
@@ -187,10 +188,11 @@ TEF(f3)
 ## abline(f1)
 ## lines(newx, conf1[,2], lty=2)
 ## lines(newx, conf1[,3], lty=2)
+## par(oldpar)
 
 
 ###################################################
-### code chunk number 23: GettingStarted.Rnw:416-417
+### code chunk number 23: GettingStarted.Rnw:418-419
 ###################################################
 par(mfrow=c(1,2))
 f4 = fuzzylm(y~x, fuzzydat$lee, method="plrls")
@@ -203,10 +205,11 @@ plot(fuzzydat$lee$x, fuzzydat$lee$y, xlab = "x", ylab = "y", main="LS")
 abline(f1)
 lines(newx, conf1[,2], lty=2)
 lines(newx, conf1[,3], lty=2)
+par(oldpar)
 
 
 ###################################################
-### code chunk number 24: GettingStarted.Rnw:453-454 (eval = FALSE)
+### code chunk number 24: GettingStarted.Rnw:454-455 (eval = FALSE)
 ###################################################
 ## ?plrls
 

@@ -194,7 +194,7 @@ r = supp(B1)[2] - xc
 c(xc, l, r)
 @
 <<echo=FALSE>>=
-detach("package:FuzzyNumbers", unload=TRUE)
+detach("package:FuzzyNumbers", unload = TRUE)
 require(fuzzyreg)
 @
 
@@ -219,7 +219,7 @@ will suitably reflect the central value and the spreads used in \texttt{fuzzyreg
 \section{Methods for fitting fuzzy regression models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Methods implemented in \texttt{fuzzyreg 0.4} fit fuzzy linear models (Table~\ref{tab:methods}).
+Methods implemented in \texttt{fuzzyreg 0.5.2} fit fuzzy linear models (Table~\ref{tab:methods}).
 
 \begin{table}[h]
 	\caption{Methods for fitting fuzzy regression with \texttt{fuzzyreg}.
@@ -356,6 +356,7 @@ compare the models numerically using the total error of fit $\sum{E}$ \cite{ref:
 with the \texttt{TEF()} function:
 
 <<figTEF, echo=FALSE, eval=FALSE>>=
+oldpar <- par()
 par(mfrow=c(1,2))
 plot(f2, res=20, col.fuzzy="lightblue", main = "f2 - MOFLR")
 plot(f3, res=20, col.fuzzy = "lightblue", main = "f3 - FLS")
@@ -408,6 +409,7 @@ plot(fuzzydat$lee$x, fuzzydat$lee$y, xlab = "x", ylab = "y", main="LS")
 abline(f1)
 lines(newx, conf1[,2], lty=2)
 lines(newx, conf1[,3], lty=2)
+par(oldpar)
 @
 
 \setkeys{Gin}{width=\textwidth}
@@ -443,9 +445,8 @@ in the fuzzy regression model plots).
 To cite \texttt{fuzzyreg}, include the reference to the software and the used method.
 
 \begin{quote}
-\v{S}krab\'{a}nek P. and Mart\'{i}nkov\'{a} N. 2018. fuzzyreg: An R Package for 
-Fuzzy Linear Regression. In: \v{C}ech P., Svozil D. (eds.), \emph{ENBIK2018 Conference 
-Proceedings, Prague}, 7.
+\v{S}krab\'{a}nek P. and Mart\'{i}nkov\'{a} N. 2021. Algorithm 1017: fuzzyreg: An R Package for 
+Fuzzy Linear Regression Models. ACM Trans. Math. Softw. 47: 29. doi: 10.1145/3451389.
 \end{quote}
 
 The references for the specific methods are accessible through the method help, e.g.

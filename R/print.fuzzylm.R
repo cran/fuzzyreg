@@ -3,6 +3,7 @@
 #' Prints the call and coefficients from the \code{fuzzylm} object. 
 #' @param x a \code{fuzzylm} object.
 #' @param ... further arguments passed to or from other methods.
+#' @return No return value, called for side effects.
 #' @keywords fuzzy
 #' @export
 #' @examples
@@ -14,8 +15,8 @@
 
 
 print.fuzzylm = function(x, ...){
-	cat("\nFuzzy linear model using the", x$method, "method\n\nCall:\n")
-	print(x$call)
-	cat("\nCoefficients in form of", x$fuzzynum, "fuzzy numbers:\n\n")
-	print(x$coef)
+	cat("\nFuzzy linear model using the", x$method, "method\n\nCall:\n", ...)
+	print(x$call, ...)
+	cat("\nCoefficients in form of", x$fuzzynum, "fuzzy numbers:\n\n", ...)
+	print(x$coef, ...)
 }

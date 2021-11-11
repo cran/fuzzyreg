@@ -4,9 +4,19 @@
 \alias{plot.fuzzylm}
 \title{Plot Fuzzy Linear Regression}
 \usage{
-\method{plot}{fuzzylm}(x, y = NULL, which = 1, res = 2,
-  col.fuzzy = NA, length = 0.05, angle = 90, main = "method",
-  xlab = NULL, ylab = NULL, ...)
+\method{plot}{fuzzylm}(
+  x,
+  y = NULL,
+  which = 1,
+  res = 2,
+  col.fuzzy = NA,
+  length = 0.05,
+  angle = 90,
+  main = "method",
+  xlab = NULL,
+  ylab = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{a \code{fuzzylm} object.}
@@ -14,7 +24,7 @@
 \item{y}{NULL for plotting a \code{fuzzylm} object.}
 
 \item{which}{an integer or character string specifying which explanatory variable to 
-plot.}
+plot in a partial fit of a multiple regression.}
 
 \item{res}{an integer \code{>= 2} specifying resolution of shading for the regression
 plot. Minimum resolution for shading the plot is 3.}
@@ -33,6 +43,9 @@ the model.}
 \item{ylab}{a label for the y axis, defaults to a description of y.}
 
 \item{...}{additional graphical parameters.}
+}
+\value{
+No return value, called for side effects.
 }
 \description{
 Plots the data and the central tendency with spreads of a fuzzy linear regression.   

@@ -4,7 +4,9 @@
 \name{fuzzydat}
 \alias{fuzzydat}
 \title{Data For Fuzzy Linear Regression}
-\format{A list of data.frames.}
+\format{
+A list of data.frames.
+}
 \source{
 Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
   46(3): 141-157.

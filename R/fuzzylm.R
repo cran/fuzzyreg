@@ -2,7 +2,7 @@
 #'
 #' A wrapper function that calculates fuzzy regression coeficients using a chosen method.
 #' @param formula a model formula.
-#' @param data a data.frame, containing the variables in formula.
+#' @param data a data.frame, containing the variables used in formula.
 #' @param method method for fitting of the fuzzy linear model. 
 #' @param fuzzy.left.x character string vector specifying column name(s) with the left 
 #'   spread of the fuzzy independent variable(s).
@@ -12,12 +12,15 @@
 #'   spread of the fuzzy dependent variable.
 #' @param fuzzy.right.y character string vector specifying column name(s) with the right 
 #'   spread of the fuzzy dependent variable.
-#' @param ... additional parameters used by specific methods.
+#' @param silent logical whether warnings should be printed.
+#' @param ... additional parameters used by specific methods, check functions 
+#'   \code{\link{moflr}}, \code{\link{oplr}}, \code{\link{plr}}, and \code{\link{plrls}}
+#'   for full list of optional method-specific arguments.
 #' @details The implemented methods include \code{\link{plrls}} for fitting the fuzzy linear
 #'   regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{fls}} 
 #'   (Diamond 1988), \code{\link{oplr}} (Hung and Yang 2006), \code{\link{moflr}}
 #'   (Nasrabadi et al. 2005) and \code{\link{plr}} (Tanaka et al. 1989) methods for
-#'   triangular fuzzy numbers. 
+#'   triangular fuzzy numbers.
 #' @return Returns a \code{fuzzylm} object that includes the model coefficients, limits
 #'   for data predictions from the model and the input data.
 #' @seealso \code{\link[=plot.fuzzylm]{plot}}, \code{\link[=predict.fuzzylm]{predict}}, 
@@ -49,13 +52,14 @@
 #' fuzzylm(y ~ x, data = fuzzydat$lee, method = "plrls")
 #' \dontrun{
 #' # returns an error due to the incorrect number of spreads
-#' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")}
+#' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl")
+#' }
 #' # use the same column name for the left and right spread, when the method requests 
 #' # non-symmetric fuzzy numbers, but the data specify symmetric fuzzy numbers 
 #' fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl")
 
 
-fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.right.x = NULL, fuzzy.left.y = NULL, fuzzy.right.y = NULL, ...){
+fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.right.x = NULL, fuzzy.left.y = NULL, fuzzy.right.y = NULL, silent = FALSE, ...){
 	# initiate model.frame
 	cl <- match.call()
 	mf <- match.call(expand.dots = FALSE)
@@ -70,7 +74,7 @@ fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.r
 	y <- xy[attr(mt, "response")]
 	# check spreads
 	if(any(!is.null(c(fuzzy.left.x, fuzzy.right.x, fuzzy.left.y, fuzzy.right.y)))){
-		warning("fuzzy spreads detected - assuming same variable order as in formula")
+		if(!silent) warning("fuzzy spreads detected - assuming same variable order as in formula")
 		lhs <- c(y, fuzzy.left.y, fuzzy.right.y)
 		rhs <- c(x, fuzzy.left.x, fuzzy.right.x)
 		formula <- ifelse(length(lhs) > 1, 
@@ -91,12 +95,7 @@ fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.r
 							fls = fls(x = x, y = y, ...),
 							oplr = oplr(x = x, y = y, ...),
 							moflr = moflr(x = x, y = y, ...),
-							plr = plr(x = x, y = y, ...),
-							diamond = fls(x = x, y = y, ...),
-							hung = oplr(x = x, y = x, ...),
-							lee = plrls(x = x, y = y, ...),
-							nasrabadi = moflr(x = x, y = y, ...),
-							tanaka = plr(x = x, y = y, ...))
+							plr = plr(x = x, y = y, ...))
 	fuzzy <- list(call = cl, method = toupper(method), fuzzynum = coefs$fuzzynum, coef = coefs$coef, lims = coefs$lims, x = x, y = y)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy

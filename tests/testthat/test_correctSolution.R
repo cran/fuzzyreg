@@ -46,10 +46,12 @@ test_that("correct OPLR", {
 
 test_that("correct TEF for crisp numbers", {
 
+  skip_on_os("mac", arch = "aarch64")
+  
   f = fuzzylm(y ~ x, data = data.frame(x = 1:3, y = 2:4))
   expect_equal(0, 
                TEF(f),
-               tolerance = 1e-6)
+               tolerance = 1e-5)
 })
 
 test_that("correct TEF for TFN using PLR by Tanaka et al.", {

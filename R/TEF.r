@@ -19,6 +19,7 @@
 #' @references Kim B. and Bishu R. R. (1998) Evaluation of fuzzy linear regression
 #'   models by comparing membership functions. \emph{Fuzzy Sets and Systems}
 #'   100: 343-352.
+#' @importFrom stats integrate
 #' @export
 #' @examples
 #' data(fuzzydat)
@@ -45,7 +46,10 @@ TEF = function(object, sc = 1e-6, ...){
   	}
   e = 0
     for(i in 1:nrow(TFN1)){
-    lims = c(TFN1[i,1]-TFN1[i,2], TFN1[i,1]+TFN1[i,3], TFN2[i,1]-TFN2[i,2], TFN2[i,1]+TFN2[i,3])
+    lims = c(TFN1[i, 1] - TFN1[i, 2], 
+             TFN1[i, 1] + TFN1[i, 3], 
+             TFN2[i, 1] - TFN2[i, 2], 
+             TFN2[i, 1] + TFN2[i, 3])
     D = stats::integrate(function(x) abs(dom(x, TFN1[i,]) - dom(x, TFN2[i,])), min(lims), max(lims),
                            stop.on.error = FALSE)$value
     int = D / stats::integrate(function(x) dom(x, TFN1[i,]), min(lims[1:2]), max(lims[1:2]),

@@ -11,6 +11,9 @@
 
 \item{...}{further arguments passed to or from other methods.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Prints the call and coefficients from the \code{fuzzylm} object.
 }

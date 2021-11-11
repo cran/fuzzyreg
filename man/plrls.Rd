@@ -13,7 +13,8 @@ Missing values not allowed.}
 
 \item{y}{one column matrix of dependent variable values, missing values not allowed.}
 
-\item{h}{a scalar value in interval \code{[0,1]}, specifying the h-level.}
+\item{h}{a scalar value in interval \code{[0,1]}, specifying the h-level, which is the
+minimum degree of membership for each prediction in the model.}
 
 \item{k1}{weight coefficient for the centeral tendency.}
 

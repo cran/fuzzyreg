@@ -6,7 +6,7 @@
 #' @param x a \code{fuzzylm} object.
 #' @param y NULL for plotting a \code{fuzzylm} object.
 #' @param which an integer or character string specifying which explanatory variable to 
-#'   plot.
+#'   plot in a partial fit of a multiple regression.
 #' @param res an integer \code{>= 2} specifying resolution of shading for the regression  
 #'    plot. Minimum resolution for shading the plot is 3.
 #' @param col.fuzzy color for shading of the regression plot.
@@ -19,6 +19,7 @@
 #' @param ... additional graphical parameters.
 #' @details Silently plots the data. Fuzzy numbers are plotted with points for the central 
 #'   value and arrows specifying spreads.
+#' @return No return value, called for side effects.
 #' @keywords fuzzy
 #' @export
 #' @examples
@@ -26,10 +27,13 @@
 #' f = fuzzylm(y ~ x, fuzzydat$lee)
 #' plot(f)
 #' plot(f, res = 20, col.fuzzy = "red")
+#' @importFrom graphics arrows abline polygon plot
+#' @importFrom grDevices dev.size colorRampPalette
+
 plot.fuzzylm = function(x, y = NULL, which = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", xlab = NULL, ylab = NULL, ...){
 	# assumes intercept in first column
 	xc <- ifelse(is.numeric(which), which + 1, which(colnames(x$x) == which))
-	coefs <- x$coef
+	coefs <- x$coef[c(1,xc),]
 	X <- x$x[, xc]
 	y <- as.matrix(x$y)[, 1]
 	cf <- function(x) coefs[1,1] + coefs[2,1] * x

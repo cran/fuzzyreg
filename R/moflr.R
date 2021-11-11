@@ -35,7 +35,7 @@
 #' data(fuzzydat)
 #' fuzzylm(y~x, fuzzydat$nas, "moflr", "xl", , "yl")
 
-moflr <- function(x, y, omega = 0.5, sc = 1e-5){		
+moflr <- function(x, y, omega = 0.5, sc = 1e-6){		
 	m <- nrow(x)
 	n <- ncol(x)
 	n <- (n - 1) / 2

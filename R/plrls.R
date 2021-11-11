@@ -9,7 +9,8 @@
 #'    observations. The first column is related to the intercept, so it consists of ones.
 #'    Missing values not allowed.
 #' @param y one column matrix of dependent variable values, missing values not allowed.
-#' @param h a scalar value in interval \code{[0,1]}, specifying the h-level.
+#' @param h a scalar value in interval \code{[0,1]}, specifying the h-level, which is the
+#'    minimum degree of membership for each prediction in the model.
 #' @param k1 weight coefficient for the centeral tendency.
 #' @param k2 weight coefficient for the spreads.
 #' @param epsilon small positive number that supports search for the optimal solution.

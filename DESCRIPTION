@@ -1,7 +1,7 @@
 Package: fuzzyreg
 Title: Fuzzy Linear Regression
-Version: 0.5.1
-Date: 2019-06-05
+Version: 0.5.2
+Date: 2021-11-08
 Authors@R: c(person(given = "Pavel", family = "Skrabanek", email = "pavel.skrabanek@vut.cz", 
     role = c("aut", "cph")), 
     person(given = "Natalia", family = "Martinkova", email = "martinkova@ivb.cz", 
@@ -10,7 +10,7 @@ Author: Pavel Skrabanek [aut, cph],
   Natalia Martinkova [aut, cre, cph]
 Maintainer: Natalia Martinkova <martinkova@ivb.cz>
 Description: Estimators for fuzzy linear regression. The functions estimate parameters of 
-    fuzzy linear regression models with crisp or fuzzy independent variables (triangular 
+    fuzzy linear regression models with crisp or fuzzy independent variables (triangular
     fuzzy numbers are supported). Implements multiple methods for parameter estimation and 
     algebraic operations with triangular fuzzy numbers. Includes functions for 
     summarising, printing and plotting the model fit. Calculates predictions from the 
@@ -26,10 +26,10 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: limSolve, quadprog, stats, graphics, grDevices
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
 Suggests: testthat, FuzzyNumbers
 BuildVignettes: true
 NeedsCompilation: no
-Packaged: 2019-06-06 05:16:25 UTC; martinkova
+Packaged: 2021-11-10 14:28:46 UTC; martinkova
 Repository: CRAN
-Date/Publication: 2019-06-06 07:50:14 UTC
+Date/Publication: 2021-11-11 15:00:02 UTC

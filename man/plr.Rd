@@ -14,7 +14,8 @@ related to the intercept, so it consists of ones. Missing values not allowed.}
 Method assumes symmetric triangular fuzzy input, so the second spread (if present)  
 is ignored. Missing values not allowed.}
 
-\item{h}{a scalar value in interval \code{[0,1]}, specifying the h-level.}
+\item{h}{a scalar value in interval \code{[0,1)}, specifying the h-level, which is the
+minimum degree of membership for each prediction in the model.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
@@ -29,6 +30,7 @@ regression method (PLR) developed by Tanaka et al. (1989). Specifically, the
 The function input expects the response in form of a symmetric fuzzy
    number and the predictors as crisp numbers. The prediction returns 
    symmetric triangular fuzzy number coefficients. 
+
    The h-level is a degree of fitting chosen by the decision maker.
 }
 \note{

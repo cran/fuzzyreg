@@ -4,13 +4,15 @@
 \name{bats}
 \alias{bats}
 \title{Temperature Data of Hibernating Bats and Climate at Site}
-\format{A data frame with 528 rows and two variables:
+\format{
+A data frame with 528 rows and two variables:
 \describe{
   \item{\code{MAST}}{numeric Mean annual surface temperature at the site in degrees 
     Celsius}
   \item{\code{temperature}}{numeric Body surface temperature of hibernating bats in 
     degrees Celsius}
-}}
+}
+}
 \source{
 Martinkova, N., Pikula, J., Zukal, J., Kovacova, V., Bandouchova, H., 
   Bartonicka, T., Botvinkin, A.D., Brichta, J., Dundarova, H., Kokurewicz, T., 

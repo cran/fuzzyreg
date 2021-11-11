@@ -1,20 +1,18 @@
 year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
-bibentry(bibtype = "inproceedings",
-         title = "{fuzzyreg}: An R package for Fuzzy Linear Regression",
-		 author = c(person("Natalia", "Martinkova"), person("Pavel", "Skrabanek")),
-         year = 2018,
-         booktitle = "ENBIK2018 Conference Proceedings",
-         editor = c(person("Petr", "Cech"), person("Daniel", "Svozil")),
-         publisher = "University of Chemistry and Technology",
-         address = "Prague",
-         pages = "7",
-         isbn = "978-80-7592-017-1"
+bibentry(bibtype = "article",
+		author = c(person("Pavel", "Skrabanek"), person("Natalia", "Martinkova")),
+		title = "Algorithm 1017: {fuzzyreg}: An {R} package for fitting fuzzy regression models",
+		year = "2021",
+		journal = "{ACM} Trans. Math. Softw.",
+		volume = "47",
+		doi = "10.1145/3451389",
+		pages = "29"
          )
          
 bibentry(bibtype = "Manual", 
-		 title = "{fuzzyreg}: Fuzzy Linear Regression",
+		 title = "Getting started with fitting fuzzy linear regression models in {R}",
 		 author = c(person("Pavel", "Skrabanek"), person("Natalia", "Martinkova")),
 		 year = year,
 		 note = note,

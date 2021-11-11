@@ -4,7 +4,7 @@
 \alias{moflr}
 \title{Fuzzy Linear Regression Using the Multi-Objective Fuzzy Linear Regression Method}
 \usage{
-moflr(x, y, omega = 0.5, sc = 1e-05)
+moflr(x, y, omega = 0.5, sc = 1e-06)
 }
 \arguments{
 \item{x}{matrix of \emph{n} independent variable values, followed by \emph{n} spreads. 

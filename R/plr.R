@@ -8,10 +8,12 @@
 #' @param y two column matrix of dependent variable values and the respective spread. 
 #'    Method assumes symmetric triangular fuzzy input, so the second spread (if present)  
 #'    is ignored. Missing values not allowed.
-#' @param h a scalar value in interval \code{[0,1]}, specifying the h-level.
+#' @param h a scalar value in interval \code{[0,1)}, specifying the h-level, which is the
+#'    minimum degree of membership for each prediction in the model.
 #' @details The function input expects the response in form of a symmetric fuzzy
 #'    number and the predictors as crisp numbers. The prediction returns 
 #'    symmetric triangular fuzzy number coefficients. 
+#'
 #'    The h-level is a degree of fitting chosen by the decision maker.
 #' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
 #'    \code{method = "plr"}.

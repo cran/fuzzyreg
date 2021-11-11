@@ -6,6 +6,8 @@ test_that("warnings for spreads", {
 	
 	expect_warning(fuzzylm(y~x,dat, method="fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl"),
 				   "spreads detected")
+	expect_warning(fuzzylm(y~x,dat, method="fls", fuzzy.left.y = "yl", fuzzy.right.y = "yl", silent = TRUE),
+					regexp = NA)
 
 })
 
