@@ -1,4 +1,15 @@
-context("correct numerical solution")
+test_that("correct BFRL", {
+	data(fuzzydat)
+  expect_equivalent(fuzzylm(y ~ x, data = fuzzydat$hun, method = "bfrl", , , "yl", "yl")$coef,  
+               matrix(c(4.356, 2.48, 2.48, 1.868, 0, 0), ncol = 3, byrow = T),
+               tolerance = 1e-3)
+  
+  expect_equivalent(fuzzylm(y ~ x, data = fuzzydat$dia, method = "bfrl", , , "yl", "yl")$coef,  
+               matrix(c(1.2, 0.485, 0.485, 0.133, 0, 0), ncol = 3, byrow = T),
+               tolerance = 1e-3)
+  
+
+})
 
 test_that("correct PLR-LS", {
   

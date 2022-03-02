@@ -1,3 +1,9 @@
+fuzzyreg v. 0.6, released 2022-03-02
+
+* Added method BFRL
+* Updated plot.fuzzylm to display partial fit in multiple regression models
+
+=======================================
 fuzzyreg v. 0.5.2, released 2021-11-11
 
 * Updated citation

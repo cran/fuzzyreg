@@ -7,7 +7,7 @@
 \method{plot}{fuzzylm}(
   x,
   y = NULL,
-  which = 1,
+  choice = 1,
   res = 2,
   col.fuzzy = NA,
   length = 0.05,
@@ -23,7 +23,7 @@
 
 \item{y}{NULL for plotting a \code{fuzzylm} object.}
 
-\item{which}{an integer or character string specifying which explanatory variable to 
+\item{choice}{an integer or character string specifying which explanatory variable to 
 plot in a partial fit of a multiple regression.}
 
 \item{res}{an integer \code{>= 2} specifying resolution of shading for the regression
@@ -55,6 +55,9 @@ the polygon for the regression.
 \details{
 Silently plots the data. Fuzzy numbers are plotted with points for the central 
   value and arrows specifying spreads.
+
+  In case the \code{x} object contains a multiple fuzzy regression, the function plots 
+  a partial fit for one explanatory variable.
 }
 \examples{
 data(fuzzydat)

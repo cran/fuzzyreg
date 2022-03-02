@@ -16,8 +16,9 @@
 #' @param ... additional parameters used by specific methods, check functions 
 #'   \code{\link{moflr}}, \code{\link{oplr}}, \code{\link{plr}}, and \code{\link{plrls}}
 #'   for full list of optional method-specific arguments.
-#' @details The implemented methods include \code{\link{plrls}} for fitting the fuzzy linear
-#'   regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{fls}} 
+#' @details The implemented methods include \code{\link{plrls}} (Lee and Tanaka 1999) and
+#'   \code{\link{bfrl}} (Skrabanek et al. 2021) for fitting the fuzzy linear
+#'   regression from the crisp input data, and \code{\link{fls}} 
 #'   (Diamond 1988), \code{\link{oplr}} (Hung and Yang 2006), \code{\link{moflr}}
 #'   (Nasrabadi et al. 2005) and \code{\link{plr}} (Tanaka et al. 1989) methods for
 #'   triangular fuzzy numbers.
@@ -40,7 +41,10 @@
 #'   regression analysis: a multi-objective programming approach. \emph{Applied Mathematics
 #'   and Computation} 163: 245-251.
 #'
-#'   Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
+#'   Skrabanek, P., Marek, J. and Pozdilkova, A. (2021) Boscovich Fuzzy Regression 
+#'   Line. \emph{Mathematics} 9: 685.
+#'
+#'   Tanaka, H., Hayashi, I. and Watada, J. (1989) Possibilistic linear 
 #'   regression analysis for fuzzy data. \emph{European Journal of Operational 
 #'   Research} 40: 389-396.
 #'
@@ -86,7 +90,7 @@ fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.r
 	y <- stats::model.response(mf, "numeric")
 	x <- stats::model.matrix(stats::as.formula(formula), data = mf)
 	# check method
-	methods <- c("plrls", "flar", "fls", "oplr", "moflr", "plr", "diamond", "hung", "lee", "nasrabadi", "tanaka")
+	methods <- c("bfrl", "plrls", "flar", "fls", "oplr", "moflr", "plr", "diamond", "hung", "lee", "nasrabadi", "tanaka")
 	if(!any(grepl(tolower(method), methods)))
 		stop(gettextf("method '%s' is not supported.", method))
 	method <- methods[methods %in% tolower(sub("-", "", method))]
@@ -95,7 +99,8 @@ fuzzylm = function(formula, data, method = "plrls", fuzzy.left.x = NULL, fuzzy.r
 							fls = fls(x = x, y = y, ...),
 							oplr = oplr(x = x, y = y, ...),
 							moflr = moflr(x = x, y = y, ...),
-							plr = plr(x = x, y = y, ...))
+							plr = plr(x = x, y = y, ...),
+							bfrl = bfrl(x = x, y = y))
 	fuzzy <- list(call = cl, method = toupper(method), fuzzynum = coefs$fuzzynum, coef = coefs$coef, lims = coefs$lims, x = x, y = y)
 	class(fuzzy) <- "fuzzylm"
 	fuzzy

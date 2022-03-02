@@ -5,7 +5,7 @@
 #' the polygon for the regression.
 #' @param x a \code{fuzzylm} object.
 #' @param y NULL for plotting a \code{fuzzylm} object.
-#' @param which an integer or character string specifying which explanatory variable to 
+#' @param choice an integer or character string specifying which explanatory variable to 
 #'   plot in a partial fit of a multiple regression.
 #' @param res an integer \code{>= 2} specifying resolution of shading for the regression  
 #'    plot. Minimum resolution for shading the plot is 3.
@@ -19,6 +19,10 @@
 #' @param ... additional graphical parameters.
 #' @details Silently plots the data. Fuzzy numbers are plotted with points for the central 
 #'   value and arrows specifying spreads.
+#'
+#'   In case the \code{x} object contains a multiple fuzzy regression, the function plots 
+#'   a partial fit for one explanatory variable. 
+#'   
 #' @return No return value, called for side effects.
 #' @keywords fuzzy
 #' @export
@@ -30,23 +34,23 @@
 #' @importFrom graphics arrows abline polygon plot
 #' @importFrom grDevices dev.size colorRampPalette
 
-plot.fuzzylm = function(x, y = NULL, which = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", xlab = NULL, ylab = NULL, ...){
+plot.fuzzylm = function(x, y = NULL, choice = 1, res = 2, col.fuzzy = NA, length = 0.05, angle = 90, main = "method", xlab = NULL, ylab = NULL, ...){
 	# assumes intercept in first column
-	xc <- ifelse(is.numeric(which), which + 1, which(colnames(x$x) == which))
-	coefs <- x$coef[c(1,xc),]
+	xc <- ifelse(is.numeric(choice), choice + 1, which(colnames(x$x) == choice))
+	coefs <- x$coef[c(1, xc), ]
 	X <- x$x[, xc]
 	y <- as.matrix(x$y)[, 1]
-	cf <- function(x) coefs[1,1] + coefs[2,1] * x
-	lf <- function(x) coefs[1,1] - coefs[1,2] + (coefs[2,1] - coefs[2,2]) * x
-	rf <- function(x) coefs[1,1] + coefs[1,3] + (coefs[2,1] + coefs[2,3]) * x
+	cf <- function(i) coefs[1,1] + coefs[2,1] * i
+	lf <- function(i) coefs[1,1] - coefs[1,2] + (coefs[2,1] - coefs[2,2]) * i
+	rf <- function(i) coefs[1,1] + coefs[1,3] + (coefs[2,1] + coefs[2,3]) * i
 	x0 <- min(X)
 	x1 <- max(X)
-	y0c <- cf(x = x0)
-	y0l <- lf(x = x0)
-	y0r <- rf(x = x0)
-	y1c <- cf(x = x1)
-	y1l <- lf(x = x1)
-	y1r <- rf(x = x1)
+	y0c <- cf(i = x0)
+	y0l <- lf(i = x0)
+	y0r <- rf(i = x0)
+	y1c <- cf(i = x1)
+	y1l <- lf(i = x1)
+	y1r <- rf(i = x1)
 
 	if(res < 2) res <- 2
 	y0 <- c(seq(y0l, y0c, length.out = res), seq(y0c, y0r, length.out = res))

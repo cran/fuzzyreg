@@ -1,4 +1,4 @@
-context("data handling with fuzzylm and fuzzify")
+
 
 
 test_that("warnings for spreads", {
@@ -15,7 +15,7 @@ test_that("warnings for spreads", {
 test_that("error for incorrect number of spreads for nsTFN", {
   
    expect_error(fuzzylm(y ~ x, data = fuzzydat$dia, method = "fls", fuzzy.left.y = "yl"),
-                "two spreads")
+                regexp = "Only one dependent variable with two spreads allowed for the FLS method")
 })
 
 
@@ -33,7 +33,7 @@ test_that("error on multiple outliers in OPLR method", {
   dat[1,3] = 4.0
   
   expect_error(fuzzylm(y ~ x, dat, "oplr", , , "yl", "yl"),
-               "Multiple outliers")
+               regexp = "Multiple outliers detected")
 })
 
 

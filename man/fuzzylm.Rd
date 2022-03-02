@@ -49,8 +49,9 @@ Returns a \code{fuzzylm} object that includes the model coefficients, limits
 A wrapper function that calculates fuzzy regression coeficients using a chosen method.
 }
 \details{
-The implemented methods include \code{\link{plrls}} for fitting the fuzzy linear
-  regression from the crisp input data (Lee and Tanaka 1999), and \code{\link{fls}} 
+The implemented methods include \code{\link{plrls}} (Lee and Tanaka 1999) and
+  \code{\link{bfrl}} (Skrabanek et al. 2021) for fitting the fuzzy linear
+  regression from the crisp input data, and \code{\link{fls}} 
   (Diamond 1988), \code{\link{oplr}} (Hung and Yang 2006), \code{\link{moflr}}
   (Nasrabadi et al. 2005) and \code{\link{plr}} (Tanaka et al. 1989) methods for
   triangular fuzzy numbers.
@@ -81,7 +82,10 @@ Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
   regression analysis: a multi-objective programming approach. \emph{Applied Mathematics
   and Computation} 163: 245-251.
 
-  Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
+  Skrabanek, P., Marek, J. and Pozdilkova, A. (2021) Boscovich Fuzzy Regression 
+  Line. \emph{Mathematics} 9: 685.
+
+  Tanaka, H., Hayashi, I. and Watada, J. (1989) Possibilistic linear 
   regression analysis for fuzzy data. \emph{European Journal of Operational 
   Research} 40: 389-396.
 
