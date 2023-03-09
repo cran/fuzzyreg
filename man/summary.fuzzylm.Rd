@@ -13,7 +13,7 @@
 }
 \value{
 Returns a list with models for the central tendency and spreads from the fuzzy
-  linear regression, total error of fit of the model and a goodness-of-fit measure.
+linear regression, total error of fit of the model and a goodness-of-fit measure.
 }
 \description{
 Calculates the summary from the \code{fuzzylm} object.

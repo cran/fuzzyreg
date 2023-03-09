@@ -35,7 +35,7 @@
 #' fuzzify(1:6, c(1,1,1,2,2,2), method = "err", err = runif(6) * 1e-3)
 
 
-fuzzify = function(x, y = NULL, method = "mean", err = 0, dimnames = list("x", "y"), ...){
+fuzzify = function(x, y = NULL, method = "mean", err = 0, dimnames = NULL, ...){
   # check input
   metody = c("mean", "median", "zero", "error")
   m = pmatch(method, metody)
@@ -43,50 +43,57 @@ fuzzify = function(x, y = NULL, method = "mean", err = 0, dimnames = list("x", "
                             paste(metody, collapse = ", ")))
   method = metody[m]
   
+  x = as.matrix(x)
+  
   if(is.null(y)){
-    y = rep(1, length(x))
+    y = rep(1, nrow(x))
   }
   
-  if(length(x) != length(y)) stop("x and y must have the same length")
+  
+  if(nrow(x) != length(y)) stop("x and y must have the same length")
   
   # conversions
   if(method == "mean"){
     res = stats::aggregate(x, by = list(y), FUN = mean, ...)
-    res[, ncol(res)+1] = stats::aggregate(x, by = list(y), FUN = stats::sd, ...)$x
-    res = res[, c(2,3,3,1)]
+    res = cbind(res, stats::aggregate(x, by = list(y), FUN = stats::sd, ...)[, -1])
+    res = res[, c(2:(ncol(x) + 1), rep((ncol(x) + 2):ncol(res), 2), 1)]
   }
   
   if(method == "median"){
     res = stats::aggregate(x, by = list(y), FUN = stats::median, ...)
-    res[, ncol(res) + 1] = res[, 2] - stats::aggregate(x, by = list(y), FUN = stats::quantile, probs = 0.25, ...)$x
-    res[, ncol(res) + 1] = stats::aggregate(x, by = list(y), FUN = stats::quantile, probs = 0.75, ...)$x - res[, 2]
-    res = res[, c(2,3,4,1)]
+    res = cbind(res, res[, 2:(ncol(x) + 1)] - stats::aggregate(x, by = list(y), FUN = stats::quantile, probs = 0.25, ...)[, -1])
+    res = cbind(res, stats::aggregate(x, by = list(y), FUN = stats::quantile, probs = 0.75, ...)[, -1] - res[, 2:(ncol(x) + 1)])
+    res = res[, c(2:ncol(res),1)]
   }
   
   if(method == "zero"){
-    res = data.frame(x = x, xl = rep(0, length(x)), xr = rep(0, length(x)), y = y)
+    res = cbind(x, matrix(rep(0, 2 * prod(dim(x))), nrow = nrow(x)), y)
   }
   
   if(method == "error"){
     if(length(err) == 1){
-      err = rep(err, 2 * length(x))
+      err = rep(err, 2 * prod(dim(x)))
     }
-    if(length(err) == length(x)){
-      err = c(err, err)
+    if(length(err) == nrow(x)){
+      err = rep(err, 2 * ncol(x))
     }
-    if(all(length(err) != length(x), length(err) != 2 * length(x))){
-      stop("spreads included in the err argument length not a multiple of length of x")
+    if(all(length(err) != prod(dim(x)), length(err) != 2 * prod(dim(x)))){
+      stop("spreads included in the err argument length not a multiple of length of predictors")
     }
-    res = data.frame(matrix(c(x, err), ncol = 3, byrow = FALSE))
+    res = data.frame(matrix(c(x, rep(err, ifelse(length(err) == prod(dim(x)), 2, 1))), 
+                            ncol = 3 * ncol(x), 
+                            byrow = FALSE))
     res$y = y
   }
   
   # find names
-  if(any(sapply(dimnames, FUN = function(x) length(x) != 1))){
-    warning("Using first variable name from dimnames")
+  if(is.null(dimnames)) dimnames = list(LETTERS[1:ncol(x)], "y")
+  if(any(length(dimnames[[1]]) != ncol(x), length(dimnames[[2]]) != 1)){
+    stop("Number of variable names in argument dimnames does not correspond to dimensions in x and y")
   }
-  name.x = ifelse(is.null(names(x)), dimnames[[1]][1], names(x))
-  name.y = ifelse(is.null(names(y)), dimnames[[2]][1], names(y))
+  
+  name.x = switch(1 + is.null(colnames(x)), colnames(x), dimnames[[1]])
+  name.y = switch(1 + is.null(dimnames[[2]]), dimnames[[2]][1], "y")
   colnames(res) = c(paste0(name.x, "c"),
                     paste0(name.x, "l"),
                     paste0(name.x, "r"),

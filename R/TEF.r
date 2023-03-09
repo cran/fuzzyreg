@@ -36,7 +36,7 @@ TEF = function(object, sc = 1e-6, ...){
                               cbind(TFN1, TFN1[,2]),
                               TFN1)
   TFN2 = predict.fuzzylm(object)$y
-  if(nrow(TFN1) != nrow(TFN2)) stop("Compare the same number of triangular fuzzy numbers")
+  if(nrow(TFN1) != nrow(TFN2)) { stop("Compare the same number of triangular fuzzy numbers") }
   if(ncol(TFN1) != 3 | ncol(TFN2) != 3)
   	if(nrow(TFN1) != 3 | nrow(TFN2) != 3){
   		stop("Both triangular fuzzy numbers must be matrices with three columns")

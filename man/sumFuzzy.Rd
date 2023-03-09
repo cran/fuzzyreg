@@ -7,17 +7,17 @@
 sumFuzzy(x, y)
 }
 \arguments{
-\item{x}{a numeric vector of length three, specifying a triangular fuzzy number as its 
+\item{x}{a numeric vector of length three, specifying a triangular fuzzy number as its
 central value, left and right spread.}
 
-\item{y}{a numeric vector of length three, specifying a triangular fuzzy number as its 
+\item{y}{a numeric vector of length three, specifying a triangular fuzzy number as its
 central value, left and right spread.}
 }
 \value{
 Returns a numeric vector, representing a triangular fuzzy number.
 }
 \description{
-Calculates a sum of two triangular fuzzy numbers defined as a 
+Calculates a sum of two triangular fuzzy numbers defined as a
 central value, left and right spread.
 }
 \examples{

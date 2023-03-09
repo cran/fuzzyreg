@@ -15,8 +15,8 @@ dom(x, TFN)
 Returns a numeric in interval \code{[0,1]}.
 }
 \description{
-Calculates the degree of membership of a real number to a 
-triangular fuzzy number. The fuzzy number is defined by its 
+Calculates the degree of membership of a real number to a
+triangular fuzzy number. The fuzzy number is defined by its
 central value and the left and right spreads.
 }
 \examples{

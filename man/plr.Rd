@@ -10,8 +10,8 @@ plr(x, y, h = 0)
 \item{x}{matrix of \emph{n} independent variable observations. The first column is
 related to the intercept, so it consists of ones. Missing values not allowed.}
 
-\item{y}{two column matrix of dependent variable values and the respective spread. 
-Method assumes symmetric triangular fuzzy input, so the second spread (if present)  
+\item{y}{two column matrix of dependent variable values and the respective spread.
+Method assumes symmetric triangular fuzzy input, so the second spread (if present)
 is ignored. Missing values not allowed.}
 
 \item{h}{a scalar value in interval \code{[0,1)}, specifying the h-level, which is the
@@ -19,32 +19,32 @@ minimum degree of membership for each prediction in the model.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
-  for data predictions from the model and the input data.
+for data predictions from the model and the input data.
 }
 \description{
 The function calculates fuzzy regression coeficients using the possibilistic linear
-regression method (PLR) developed by Tanaka et al. (1989). Specifically, the 
+regression method (PLR) developed by Tanaka et al. (1989). Specifically, the
 \code{min} problem is implemented in this function.
 }
 \details{
 The function input expects the response in form of a symmetric fuzzy
-   number and the predictors as crisp numbers. The prediction returns 
-   symmetric triangular fuzzy number coefficients. 
+number and the predictors as crisp numbers. The prediction returns
+symmetric triangular fuzzy number coefficients.
 
-   The h-level is a degree of fitting chosen by the decision maker.
+The h-level is a degree of fitting chosen by the decision maker.
 }
 \note{
 Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-   \code{method = "plr"}.
+\code{method = "plr"}.
 }
 \examples{
 data(fuzzydat)
 fuzzylm(y ~ x, fuzzydat$tan, "plr", , , "yl", "yr")
 }
 \references{
-Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear 
-   regression analysis for fuzzy data. \emph{European Journal of Operational 
-    Research} 40: 389-396.
+Tanaka H., Hayashi I. and Watada J. (1989) Possibilistic linear
+regression analysis for fuzzy data. \emph{European Journal of Operational
+Research} 40: 389-396.
 }
 \seealso{
 \code{\link{fuzzylm}}

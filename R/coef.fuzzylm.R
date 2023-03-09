@@ -17,10 +17,7 @@
 #'   coef(f)
 
 coef.fuzzylm <- function(object, complete = TRUE, ...){
-	xvars = colnames(object$x)
-	yvars = colnames(object$y)
-	if(is.null(yvars)) yvars = all.vars(object$call)[1]
-	n = length(xvars)
+	xvars = rownames(object$coef)
 	s = object$coef[,1]
 	l = object$coef[,2]
 	r = object$coef[,3]

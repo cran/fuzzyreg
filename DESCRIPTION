@@ -1,7 +1,6 @@
 Package: fuzzyreg
 Title: Fuzzy Linear Regression
-Version: 0.6
-Date: 2022-03-02
+Version: 0.6.1
 Authors@R: c(person(given = "Pavel", family = "Skrabanek", email = "pavel.skrabanek@vut.cz", 
     role = c("aut", "cph")), 
     person(given = "Natalia", family = "Martinkova", email = "martinkova@ivb.cz", 
@@ -14,7 +13,7 @@ Description: Estimators for fuzzy linear regression. The functions estimate para
     fuzzy numbers are supported). Implements multiple methods for parameter estimation and 
     algebraic operations with triangular fuzzy numbers. Includes functions for 
     summarising, printing and plotting the model fit. Calculates predictions from the 
-    model and total error of fit. 
+    model and total error of fit. Individual methods are described in
     Diamond (1988) <doi:10.1016/0020-0255(88)90047-3>,
 	Hung & Yang (2006) <doi:10.1016/j.fss.2006.08.004>,
 	Lee & Tanaka (1999) <doi:10.15807/jorsj.42.98>,
@@ -27,10 +26,10 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: limSolve, quadprog, stats, graphics, grDevices
-RoxygenNote: 7.1.2
-Suggests: testthat, FuzzyNumbers
-BuildVignettes: true
+RoxygenNote: 7.2.3
+Suggests: testthat, FuzzyNumbers, knitr, rmarkdown
+VignetteBuilder: knitr, rmarkdown
 NeedsCompilation: no
-Packaged: 2022-03-02 13:35:42 UTC; martinkova
+Packaged: 2023-03-09 14:38:48 UTC; martinkova
 Repository: CRAN
-Date/Publication: 2022-03-02 15:30:02 UTC
+Date/Publication: 2023-03-09 15:00:06 UTC

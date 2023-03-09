@@ -7,10 +7,10 @@
 prodFuzzy(x, y)
 }
 \arguments{
-\item{x}{a numeric vector of length three, specifying a triangular fuzzy number as its 
+\item{x}{a numeric vector of length three, specifying a triangular fuzzy number as its
 central value, left and right spread.}
 
-\item{y}{a numeric vector of length three, specifying a triangular fuzzy number as its 
+\item{y}{a numeric vector of length three, specifying a triangular fuzzy number as its
 central value, left and right spread.}
 }
 \value{

@@ -11,35 +11,35 @@ flar(x, y)
 observations. The first column is related to the intercept, so it consists of ones.
 Missing values not allowed.}
 
-\item{y}{matrix of dependent variable observations. The first column contains the 
+\item{y}{matrix of dependent variable observations. The first column contains the
 central tendency, the second column the left spread and the third column the right
 spread of non-symmetric triangular fuzzy numbers. Missing values not allowed.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
-  for data predictions from the model and the input data.
+for data predictions from the model and the input data.
 }
 \description{
 The function calculates fuzzy regression coeficients using the fuzzy least absolute
-residual (FLAR) method proposed by Zeng et al. (2017) 
+residual (FLAR) method proposed by Zeng et al. (2017)
 for non-symmetric triangular fuzzy numbers.
 }
 \details{
-The FLAR method expects real value input for the explanatory variables, and 
-   non-symmetric triangular fuzzy numbers for the response variable. The prediction 
-   returns non-symmetric triangular fuzzy numbers.
+The FLAR method expects real value input for the explanatory variables, and
+non-symmetric triangular fuzzy numbers for the response variable. The prediction
+returns non-symmetric triangular fuzzy numbers.
 }
 \note{
 Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-   \code{method = "flar"}.
+\code{method = "flar"}.
 }
 \examples{
    data(fuzzydat)
    fuzzylm(y ~ x, fuzzydat$dia, "flar", , , "yl", "yl")
 }
 \references{
-Zeng, W., Feng, Q. and Li, J. (2017) Fuzzy least absolute linear regression. 
-   \emph{Applied Soft Computing} 52: 1009-1019.
+Zeng, W., Feng, Q. and Li, J. (2017) Fuzzy least absolute linear regression.
+\emph{Applied Soft Computing} 52: 1009-1019.
 }
 \seealso{
 \code{\link{fuzzylm}}

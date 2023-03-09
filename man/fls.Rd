@@ -11,16 +11,16 @@ fls(x, y)
 observations. The first column is related to the intercept, so it consists of ones.
 Missing values not allowed.}
 
-\item{y}{matrix of dependent variable observations. The first column contains the 
+\item{y}{matrix of dependent variable observations. The first column contains the
 central tendency, the second column the left spread and the third column the right
 spread of non-symmetric triangular fuzzy numbers. Missing values not allowed.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
-  for data predictions from the model and the input data.
+for data predictions from the model and the input data.
 }
 \description{
-The function calculates fuzzy regression coeficients using the fuzzy least squares 
+The function calculates fuzzy regression coeficients using the fuzzy least squares
 (FLS) method proposed by Diamond (1988) for non-symmetric triangular fuzzy numbers.
 }
 \details{
@@ -28,7 +28,7 @@ The FLS method for the fuzzy linear regression fits a simple model.
 }
 \note{
 Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-   \code{method = "fls"}.
+\code{method = "fls"}.
 }
 \examples{
    data(fuzzydat)
@@ -39,7 +39,7 @@ Preferred use is through the \code{\link{fuzzylm}} wrapper function with argumen
 }
 \references{
 Diamond, P. (1988) Fuzzy least squares. \emph{Information Sciences}
-   46(3): 141-157.
+46(3): 141-157.
 }
 \seealso{
 \code{\link{fuzzylm}}

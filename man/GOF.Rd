@@ -21,7 +21,7 @@ prediction from a fuzzy regression model.
 }
 \details{
 The Diamond's distance of two triangular fuzzy numbers is sum of squared differences
- of the core and both support values of the fuzzy numbers.
+of the core and both support values of the fuzzy numbers.
 }
 \examples{
 data(bats)
@@ -30,11 +30,11 @@ GOF(f)
 }
 \references{
 Diamond P. (1988) Fuzzy least squares. \emph{Information Sciences}
- 46(3): 141-157.
-   
- Wang N., Zhang W.-X., Mei C.-L. (2007) Fuzzy nonparametric regression
- based on local linear smoothing technique. \emph{Information Sciences}
- 177: 3882-3900.
+46(3): 141-157.
+
+Wang N., Zhang W.-X., Mei C.-L. (2007) Fuzzy nonparametric regression
+based on local linear smoothing technique. \emph{Information Sciences}
+177: 3882-3900.
 }
 \seealso{
 \code{\link{fuzzylm}}

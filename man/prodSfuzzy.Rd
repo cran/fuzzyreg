@@ -9,14 +9,14 @@ prodSfuzzy(x, y)
 \arguments{
 \item{x}{numeric vector of length one.}
 
-\item{y}{a numeric vector of length three, specifying a triangular fuzzy number as its 
+\item{y}{a numeric vector of length three, specifying a triangular fuzzy number as its
 central value, left and right spread.}
 }
 \value{
 Returns a numeric vector, representing a triangular fuzzy number.
 }
 \description{
-Calculates product of a real number scalar and a triangular fuzzy number defined as a 
+Calculates product of a real number scalar and a triangular fuzzy number defined as a
 central value, left and right spread.
 }
 \details{

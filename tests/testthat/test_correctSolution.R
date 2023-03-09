@@ -116,6 +116,9 @@ test_that("correct fuzzify for err", {
    expect_equivalent(fuzzify(1:2, y = 1:2, method = "error", err = 1:4),
                      data.frame(matrix(c(1, 2, 1, 2, 3, 4, 1, 2), nrow = 2)),
                      tolerance = 1e-6)
+   expect_equivalent(fuzzify(matrix(1:4, ncol = 2), method = "err"),
+   					 data.frame(matrix(c(1, 2, 3, 4, rep(0, 8), 1, 1), nrow = 2)),
+   					 tolerance = 1e-6)
 })
 
 

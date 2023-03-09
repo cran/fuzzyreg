@@ -5,9 +5,9 @@
 #' @param newdata an optional data frame in which to look for variables with which to 
 #'   predict. If omitted, the fitted values are used.
 #' @param ... further arguments passed to or from other methods.
-#' @return \code{fuzzylm} object with \code{newdata} replacing the slot \code{x} and 
+#' @return \code{fuzzylm} object with \code{newdata} replacing the element \code{x} and 
 #'   predictions in triangular fuzzy number format representing the central values
-#'   and left and right spreads replacing the slot \code{y}. 
+#'   and left and right spreads replacing the element \code{y}. 
 #' @keywords fuzzy
 #' @export
 #' @examples
@@ -31,15 +31,15 @@ predict.fuzzylm <- function(object, newdata, ...){
 			stop(gettextf("'%s' is out of range. Prediction from the fuzzy linear model is defined only for data ranges used to fit the model.", v))
 		}
 	}
-	xvars = colnames(object$x)
-	xvars = xvars[2:length(xvars)]
+	xvars = colnames(object$x)[-1]
 	newdata <- newdata[, match(xvars, colnames(newdata)), drop = FALSE]
 	n <- length(xvars)
 	ct <- NULL
 	fy <- matrix(rep(object$coef[1,], nrow(newdata)), ncol = 3, byrow = TRUE, 
 				 dimnames = list(rownames(newdata), colnames(object$coef)))
-	if(object$method %in% c("PLRLS", "FLS", "OPLR", "PLR", "FLAR")) {
+	if(object$method %in% c("PLRLS", "FLS", "OPLR", "PLR", "FLAR", "BFRL")) {
 		for(i in 2:nrow(object$coef)){
+			ct <- NULL
 			for(j in 1:nrow(newdata)){
 				cti <- prodSfuzzy(y = object$coef[i,], x = newdata[j, i-1])
 				ct <- c(ct, cti)
@@ -48,11 +48,12 @@ predict.fuzzylm <- function(object, newdata, ...){
 		}
 			
 	} 
-	if(object$method == "MOFLR"){
+	if(object$method %in% c("MOFLR")){
 		n <- n/2
 		# sort fuzzy input numbers
-		fx <- paste(1:n, (n+1):(2*n), (n+1):(2*n), sep=",")
+		fx <- paste(1:n, (n+1):(2*n), (n+1):(2*n), sep = ",")
 		for(i in 2:nrow(object$coef)){
+			ct <- NULL
 			for(j in 1:nrow(newdata)){
 				cti <- prodFuzzy(object$coef[i,], newdata[j, as.numeric(unlist(strsplit(fx[i-1], ",")))])
 				ct <- c(ct, cti)

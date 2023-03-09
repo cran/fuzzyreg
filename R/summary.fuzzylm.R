@@ -15,19 +15,19 @@
 #' sum.f
 
 summary.fuzzylm = function(object, ...){
-	xvars = colnames(object$x)
-	xvars = xvars[2:length(xvars)]
-	yvars = colnames(object$y)
-	if(is.null(yvars)) yvars = all.vars(object$call)[1]
+	vars = all.vars(object$call)
+	yvars = vars[1]
+	xvars = intersect(vars, colnames(object$x))
 	n = length(xvars)
-	c = round(object$coef[,1], 4)
-	l = round(object$coef[,2], 4)
-	r = round(object$coef[,3], 4)
+	center = round(object$coef[,1], 4)
+	left.spread = round(object$coef[,2], 4)
+	right.spread = round(object$coef[,3], 4)
 	tef = TEF(object, ...)
 	gof = GOF(object)
 	
 	s = list(call = object$call, method = object$method, xvars = xvars, yvars = yvars, 
-			 n = n, c = c, l = l, r = r, TEF = tef, GOF = gof)
+			 n = n, center = center, left.spread = left.spread, right.spread = right.spread, 
+			 TEF = tef, GOF = gof)
 	class(s) = "summary.fuzzylm"
 	s
 }

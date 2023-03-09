@@ -10,8 +10,8 @@
 #'    Method assumes non-symmetric triangular fuzzy input. Missing values not allowed.
 #' @details The function input expects the response in form of a non-symmetric fuzzy
 #'    number and the predictors as crisp numbers. The prediction returns 
-#'    non-symmetric triangular fuzzy number. The intercept is a non-symmetric triangular
-#'    fuzzy number and the slope is a crisp number that is returned as a triangula fuzzy
+#'    non-symmetric triangular fuzzy numbers. The intercept is a non-symmetric triangular
+#'    fuzzy number and the slope is a crisp number that is returned as a triangular fuzzy
 #'    number with spreads equal to zero.
 #' @note Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
 #'    \code{method = "bfrl"}.

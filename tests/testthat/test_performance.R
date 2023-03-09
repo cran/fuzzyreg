@@ -70,13 +70,21 @@ test_that("parse variable names in fuzzify", {
    f = fuzzify(dat$ex, dat$res, dimnames = list("ex", "res"))
    expect_equal(colnames(f),
                 c("exc", "exl", "exr", "res"))
+   expect_equal(colnames(fuzzify(dat$ex, dat$res)), 
+   				c("Ac", "Al", "Ar", "y"))
+   expect_equal(colnames(fuzzify(dat)),
+                c("exc", "resc", "exl", "resl", "exr", "resr", "y"))				
 })
 
 
 test_that("warning on wordy dimnames in fuzzify", {
  
-  expect_warning(fuzzify(1:3, method = "med", dimnames = list(c("a", "b"), "c")),
-                 "first variable name")
+  expect_error(fuzzify(1:3, method = "med", dimnames = list(c("a", "b"), "c")),
+                 "does not correspond to dimensions")
+  expect_error(fuzzify(matrix(1:6, ncol = 2), method = "mea", dimnames = list("a", "c")),
+                 "does not correspond to dimensions")
+
+  
 })
 
 test_that("error on regression without intercept", {
@@ -84,3 +92,4 @@ test_that("error on regression without intercept", {
 	expect_error(fuzzylm(y ~ x - 1, data = fuzzydat$lee, method = "plrls"),
                 "intercept")
 })
+

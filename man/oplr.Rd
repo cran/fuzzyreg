@@ -10,42 +10,42 @@ oplr(x, y, h = 0)
 \item{x}{matrix with the independent variables observations. The first column is
 related to the intercept, so it consists of ones. Missing values not allowed.}
 
-\item{y}{two column matrix of the dependent variable values and the respective spread. 
-Method assumes symmetric triangular fuzzy input, so the second spread (if present) is 
+\item{y}{two column matrix of the dependent variable values and the respective spread.
+Method assumes symmetric triangular fuzzy input, so the second spread (if present) is
 ignored. Missing values not allowed.}
 
 \item{h}{a scalar value in interval \code{[0,1]}, specifying the h-level.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
-  for data predictions from the model and the input data.
+for data predictions from the model and the input data.
 }
 \description{
-The function calculates fuzzy regression coeficients using the possibilistic linear 
-regression with an outlier omission approach method (OPLR) developed by Hung and Yang 
-(2006) that combines the least squares approach (fitting of a central tendency) with 
+The function calculates fuzzy regression coeficients using the possibilistic linear
+regression with an outlier omission approach method (OPLR) developed by Hung and Yang
+(2006) that combines the least squares approach (fitting of a central tendency) with
 the possibilistic approach (fitting of spreads) when approximating an observed linear
 dependence by a fuzzy linear model.
 }
 \details{
-The function input expects symmetric fuzzy response and crisp predictors. The 
-   prediction returns symmetric triangular fuzzy number coefficients.
-   The OPLR method can detect one outlier in the data that is farther than 
-   \code{1.5 * IQR} from either quartile.
-   
-   The h-level is a degree of fitting chosen by the decision maker.
+The function input expects symmetric fuzzy response and crisp predictors. The
+prediction returns symmetric triangular fuzzy number coefficients.
+The OPLR method can detect one outlier in the data that is farther than
+\code{1.5 * IQR} from either quartile.
+
+The h-level is a degree of fitting chosen by the decision maker.
 }
 \note{
 Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-   \code{method = "oplr"}.
+\code{method = "oplr"}.
 }
 \examples{
 data(fuzzydat)
 fuzzylm(y ~ x, fuzzydat$hun, "oplr", , , "yl")
 }
 \references{
-Hung, W.-L. and Yang, M.-S. (2006) An omission approach for detecting 
-   outliers in fuzzy regression models. \emph{Fuzzy Sets and Systems} 157: 3109-3122.
+Hung, W.-L. and Yang, M.-S. (2006) An omission approach for detecting
+outliers in fuzzy regression models. \emph{Fuzzy Sets and Systems} 157: 3109-3122.
 }
 \seealso{
 \code{\link{fuzzylm}}

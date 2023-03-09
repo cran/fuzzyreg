@@ -9,15 +9,15 @@
 \arguments{
 \item{object}{a \code{fuzzylm} object.}
 
-\item{newdata}{an optional data frame in which to look for variables with which to 
+\item{newdata}{an optional data frame in which to look for variables with which to
 predict. If omitted, the fitted values are used.}
 
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
-\code{fuzzylm} object with \code{newdata} replacing the slot \code{x} and 
-  predictions in triangular fuzzy number format representing the central values
-  and left and right spreads replacing the slot \code{y}.
+\code{fuzzylm} object with \code{newdata} replacing the element \code{x} and
+predictions in triangular fuzzy number format representing the central values
+and left and right spreads replacing the element \code{y}.
 }
 \description{
 Predicts the central tendency and spreads from a fuzzy linear regression model.

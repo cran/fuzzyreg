@@ -15,16 +15,16 @@
 }
 \value{
 matrix with coefficients for the central tendency of the model, upper and lower
-  boundary.
+boundary.
 }
 \description{
 Extracts coefficients of the fuzzy regression model in object \code{fuzzylm}.
 }
 \note{
-The function returns real value numbers that define model predictions at 
-  \eqn{\mu_{\tilde{y}}(x) = 1}{mu_y(x) = 1} and \eqn{\mu_{\tilde{y}}(x) > 0}{mu_y(x) > 0},
-  not triangular fuzzy numbers. To extract triangular fuzzy number coefficients of the 
-  model, use \code{object$coef}.
+The function returns real value numbers that define model predictions at
+\eqn{\mu_{\tilde{y}}(x) = 1}{mu_y(x) = 1} and \eqn{\mu_{\tilde{y}}(x) > 0}{mu_y(x) > 0},
+not triangular fuzzy numbers. To extract triangular fuzzy number coefficients of the
+model, use \code{object$coef}.
 }
 \examples{
   data(fuzzydat)

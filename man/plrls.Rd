@@ -24,7 +24,7 @@ minimum degree of membership for each prediction in the model.}
 }
 \value{
 Returns a \code{fuzzylm} object that includes the model coefficients, limits
-  for data predictions from the model and the input data.
+for data predictions from the model and the input data.
 }
 \description{
 The function calculates fuzzy regression coeficients using the possibilistic linear
@@ -35,14 +35,14 @@ dependence by a fuzzy linear model.
 }
 \details{
 The function input expects crisp numbers of both the explanatory and response
-   variables, and the prediction returns non-symmetric triangular fuzzy number 
-   coefficients.
-   
-   The h-level is a degree of fitting chosen by the decision maker.
+variables, and the prediction returns non-symmetric triangular fuzzy number
+coefficients.
+
+The h-level is a degree of fitting chosen by the decision maker.
 }
 \note{
 Preferred use is through the \code{\link{fuzzylm}} wrapper function with argument
-   \code{method = "plrls"}.
+\code{method = "plrls"}.
 }
 \examples{
 x <- matrix(c(rep(1, 15), rep(1:3, each = 5)), ncol = 2)
@@ -51,8 +51,8 @@ plrls(x = x, y = y)
 }
 \references{
 Lee, H. and Tanaka, H. (1999) Fuzzy approximations with non-symmetric fuzzy
-   parameters in fuzzy regression analysis. \emph{Journal of the Operations Research
-   Society Japan} 42: 98-112.
+parameters in fuzzy regression analysis. \emph{Journal of the Operations Research
+Society Japan} 42: 98-112.
 }
 \seealso{
 \code{\link{fuzzylm}}
