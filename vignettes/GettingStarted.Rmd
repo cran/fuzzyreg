@@ -2,9 +2,12 @@
 title: "Getting Started with Fitting Fuzzy Linear Regression Models in R"
 author: "Pavel Škrabánek, Natália Martínková"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  bookdown::html_document2:
+    base_format: rmarkdown::html_vignette
+    toc: true
 vignette: >
-  %\VignetteIndexEntry{diemr: Diagnostic index expectation maximisation in R}
+  %\VignetteIndexEntry{Getting Started with Fitting Fuzzy Linear Regression Models in R}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -65,7 +68,7 @@ plot(f, res = 20, col = "lightblue", main = "PLRLS")
 ```
 
 Shading visualizes the degree of membership to the triangular fuzzy number (TFN) with a gradient from lightblue to white,
-indicating the decrease of the degree of membership from 1 to 0 (Figure \ref{fig:plrls}).
+indicating the decrease of the degree of membership from 1 to 0 (Figure \@ref(fig:plrls)).
 The central tendency (thick line) in combination with the left and the right spreads
 determine a support interval (dotted lines) of possible values, i.e. values with non-zero degrees of membership
 of the model predictions. The left and the right spreads determine the lower
@@ -89,7 +92,7 @@ degree of membership that can range from 0 to 1. The degrees of membership of
 $x$ are defined by the membership function $\mu_{\tilde{A}}(x):x\to[0,1]$,
 where $\mu_{\tilde{A}}(x^*)=0$ means that the value of $x^*$ is not included in the fuzzy
 number $\tilde{A}$ while $\mu_{\tilde{A}}(x^*)=1$ means that $x^*$ is positively
-comprehended in $\tilde{A}$ (Figure~\ref{fig:TFN}).
+comprehended in $\tilde{A}$ (Figure \@ref(fig:TFN)).
 
 In `FuzzyNumbers`, the fuzzy number is defined using side functions. In
 `fuzzyreg`, we simplify the input of the TFNs as a vector
@@ -101,7 +104,7 @@ spread, i.e. the distance from the central value to a value $x_r$ where $\mu(x_r
 $x_r>x_c$. The right spread is equal to $x_r-x_c$. The central value $x_c$ of the TFN is
 its core, and the interval $(x_l,x_r)$ is the support of the TFN.
 
-```{r TNF, echo=FALSE, eval=TRUE, fig.width = 6.5, fig.height = 3.5, fig.align = 'center', fig.cap = 'Triangular fuzzy numbers.'}
+```{r, TFN, echo=FALSE, eval=TRUE, fig.width = 6.5, fig.height = 3.5, fig.align = 'center', fig.cap = 'Triangular fuzzy numbers.'}
 plot(1, type = "n", xlim = c(0,3), ylim=c(0,1.1), xlab = expression(italic("x")),
 ylab = "degree of membership", las = 1)
 points(matrix(c(.5,1.5,2.5,1,1,1), ncol=2), pch=19)
@@ -118,12 +121,12 @@ segments(3,0,2.5,1)
 The crisp number $a=0.5$ can be written as a TFN $A$ with spreads equal
 to 0:
 ```{r, eval=FALSE}
-A = c(0.5, 0, 0)
+A <- c(0.5, 0, 0)
 ```
 The non-symmetric TFN $B$ and the symmetric TFN $C$ are then:
 ```{r, eval = FALSE}
-B = c(1.5, 0.8, 0.4)
-C = c(2.5, 0.5, 0.5)
+B <- c(1.5, 0.8, 0.4)
+C <- c(2.5, 0.5, 0.5)
 ```
 
 
@@ -136,7 +139,7 @@ the relationship between the variables in the fuzzy set framework (**Quick start
 For other methods, the spreads must be imputed.
 
 * The TFN might have spreads equal to 0 as shown for $A$ in
-Figure \ref{fig:TFN}.
+Figure \@ref(fig:TFN).
 ```{r}
 A <- rnorm(3)
 fuzzify(x = A, method = "zero")
@@ -173,12 +176,12 @@ The conversion from an object of the class `FuzzyNumber` to TFN used in
 `fuzzyreg` requires adjusting the core and the support values of the `FuzzyNumber`
 object to the central value and the spreads. For example, let's define a
 trapezoidal fuzzy number $B_1$
-that is identical with TFN $B$ displayed in Figure \ref{fig:TFN}, but that is an object of
+that is identical with TFN $B$ displayed in Figure \@ref(fig:TFN), but that is an object of
 class `FuzzyNumber`.
 
 ```{r}
 require(FuzzyNumbers)
-B1 = FuzzyNumber(0.7, 1.5, 1.5, 1.9,
+B1 <- FuzzyNumber(0.7, 1.5, 1.5, 1.9,
 		left = function(x) x,
 		right = function(x) 1 - x,
 		lower = function(a) a,
@@ -193,9 +196,9 @@ the support is the interval, where $\mu_{B_1}(x^*)>0$. We can use these values t
 the TFN $B$.
 
 ```{r}
-xc = core(B1)[1]
-l = xc - supp(B1)[1]
-r = supp(B1)[2] - xc
+xc <- core(B1)[1]
+l <- xc - supp(B1)[1]
+r <- supp(B1)[2] - xc
 c(xc, l, r)
 ```
 ```{r, echo = FALSE}
@@ -226,57 +229,68 @@ will suitably reflect the central value and the spreads used in `fuzzyreg`.
 
 Methods implemented in `fuzzyreg 0.6` fit fuzzy linear models include:
 
-Table: Methods for fitting fuzzy linear regression with `fuzzyreg`.
-	$m$ - number of allowed independent
-	variables $x$; $x$, $y$, $\hat{y}$ -- type of expected number for independent,
-	dependent variables and predictions; s -- symmetric; ns -- non-symmetric.
-	
-		Method		$m$				$x$			$y$			$\hat{y}$  Reference
-		:--- :---: :---:  :---:  :---: :---:
-		PLRLS		$\infty$		crisp		crips		nsTFN     [Lee & Tanaka1999](https://doi.org/10.15807/jorsj.42.98)
-		PLR			$\infty$		crisp		sTFN		sTFN       [Tanaka et al. 1989](https://doi.org/10.1016/0377-2217(89)90431-1)
-		OPLR		$\infty$		crisp		sTFN		sTFN       [Hung & Yang 2006](https://doi.org/10.1016/j.fss.2006.08.004)
-		FLS			1				crisp		nsTFN		nsTFN      [Diamond 1988](https://doi.org/10.1016/0020-0255(88)90047-3)
-		MOFLR	 	$\infty$	 	sTFN	 	sTFN	 	sTFN        [Nasrabadi et al. 2005](https://doi.org/10.1016/j.amc.2004.02.008)
-		BFRL       1               crisp        nsTFN       nsTFN	  [Škrabánek et al. 2021](https://doi.org/10.3390/math9060685)
 
+```{r, methods, echo = FALSE}
+tab = data.frame(Method = c("PLRLS", "PLR", "OPLR", "FLS", "MOFLR", "BFRL"),
+				m = c("$\\infty$","$\\infty$","$\\infty$","1","$\\infty$","1"),
+				x = c("crisp","crisp","crisp","crisp","sTFN","crisp"),
+				y = c("crips","sTFN","sTFN","nsTFN","sTFN","nsTFN"),
+				yhat = c("nsTFN","sTFN","sTFN","nsTFN","sTFN","nsTFN"),
+				ref = c("[Lee & Tanaka 1999](https://doi.org/10.15807/jorsj.42.98)",
+						"[Tanaka et al. 1989](https://doi.org/10.1016/0377-2217(89)90431-1)",
+						"[Hung & Yang 2006](https://doi.org/10.1016/j.fss.2006.08.004)",
+						"[Diamond 1988](https://doi.org/10.1016/0020-0255(88)90047-3)",
+						"[Nasrabadi et al. 2005](https://doi.org/10.1016/j.amc.2004.02.008)",
+						"[Škrabánek et al. 2021](https://doi.org/10.3390/math9060685)"))
+colnames(tab) = c("Method", "$m$", "$x$", "$y$", "$\\hat{y}$", "Reference")
+knitr::kable(tab, format = "html", escape = FALSE, 
+	table.attr = "style='width:90%;'",
+	caption = "Methods for fitting fuzzy linear regression with `fuzzyreg`.
+	$m$ -- number of allowed independent
+	variables $x$; $x$, $y$, $\\hat{y}$ -- type of expected number for independent,
+	dependent variables and predictions; s -- symmetric; ns -- non-symmetric.",
+	align = c("l", rep("c", 5)))
+```
 
 Methods that require symmetric TFNs handle input specifying one spread, but in methods
 expecting non-symmetric TFN input, both spreads must be defined even in cases when the
 data contain symmetric TFNs.
 
-A possibilistic linear regression (PLR) is a paradigm of whole family of possibilistic-based fuzzy
+A *possibilistic linear regression* (PLR) is a paradigm of whole family of possibilistic-based fuzzy
 estimators. It was proposed for crisp observations of the explanatory variables and symmetric fuzzy
 observations of the response variable. `fuzzyreg` uses the min problem implementation  that estimates the regression coefficients in such a way that the spreads for the model
 response are minimal needed to include all observed data. Consequently, the outliers in the data will
 increase spreads in the estimated coefficients.
 
-The possibilistic linear regression combined with the least squares (PLRLS) method fits the model prediction spreads and the central tendency with the
+The *possibilistic linear regression combined with the least squares* (PLRLS) method fits the model prediction spreads and the central tendency with the
 possibilistic and the least squares approach, respectively. The input data represent crisp numbers and
 the model predicts the response in form of a non-symmetric TFN. Local outliers in the data strongly
 influence the spreads, so a good practice is to remove them prior to the analysis.
 
-The OPLR method expands PLR by adding an omission
-approach for detecting outliers. We implemented a version that identifies a single outlier in the
+The OPLR method expands *PLR by adding an omission
+approach for detecting outliers*. We implemented a version that identifies a single outlier in the
 data located outside of the Tukey's fences. The input data include crisp explanatory variables and the
 response variable in form of a symmetric TFN.
 
-Fuzzy least squares (FLS) method supports a simple FLR for a non-symmetric TFN
+*Fuzzy least squares* (FLS) method supports a simple FLR for a non-symmetric TFN
 explanatory as well as a response variable. This probabilistic-based method (FLS calculates the fuzzy
 regression coefficients using least squares) is relatively robust against outliers compared to the
 possibilistic-based methods.
 
-A multi-objective fuzzy linear regression (MOFLR) method estimates the fuzzy regression coefficients with
+A *multi-objective fuzzy linear regression* (MOFLR) method estimates the fuzzy regression coefficients with
 a possibilistic approach from symmetric TFN input data. Given a specific weight,
 the method determines a trade-off between outlier penalization and data fitting that enables the user to
 fine-tune outlier handling in the analysis.
 
-The Boscovich fuzzy regression line (BFRL) fits a simple model predicting non-symmetric fuzzy numbers from crisp descriptor. The prediction returns non-symmetric triangular fuzzy numbers. The intercept is a non-symmetric triangular fuzzy number and the slope is a crisp number.
+The *Boscovich fuzzy regression line* (BFRL) fits a simple model predicting non-symmetric 
+fuzzy numbers from crisp descriptor. The prediction returns non-symmetric triangular fuzzy 
+numbers. The intercept is a non-symmetric triangular fuzzy number and the slope is a 
+crisp number.
 
 
 
 
-# Running a fuzzy linear regression}
+# Fitting a fuzzy linear regression
 The TFN definition used in `fuzzyreg` enables an easy setup of the regression model
 using the well-established syntax for regression analyses in `R`. The model is set up
 from a `data.frame` that contains all observations for the dependent variable and
@@ -329,10 +343,10 @@ infer the model with the ```predict``` function. The reason for disabling extrap
 the fuzzy regression models lies in
 the non-negligible risk that the support boundaries for the TFN might intersect the central tendency.
 The predicted TFNs outside of the range of data might not be defined. The predicted values
-will replace the original variable values in the \texttt{fuzzylm} data structure.
+will replace the original variable values in the `fuzzylm` data structure in the element `y`.
 
 ```{r}
-pred2 = predict(f2)
+pred2 <- predict(f2)
 pred2$y
 ```
 
@@ -345,13 +359,13 @@ is data-driven. Following the application of the suitable
 methods, fuzzy regression models can be compared according to the sum of differences
 between membership values of the observed and predicted membership functions.
 
-In Figure \ref{fig:TEF}, the points represent central values of the observations and
+In Figure \@ref(fig:TEF), the points represent central values of the observations and
 whiskers indicate their spreads. The shaded area shows the model predictions with the
 degree of membership greater than zero. We can
 compare the models numerically using the total error of fit $\sum{E}$ 
 with the `TEF()` function:
 
-```{r figTEF, echo=FALSE, eval=TRUE, fig.cap = 'Comparison of MOFLR and FLS model fits to the same data.', fig.width = 8.5, fig.height = 3.5, fig.align = 'center'}
+```{r, TEF, echo=FALSE, eval=TRUE, fig.cap = 'Comparison of MOFLR and FLS model fits to the same data.', fig.width = 7, fig.height = 3.5, fig.align = 'center'}
 oldpar <- par()
 par(mfrow=c(1,2))
 plot(f2, res=20, col.fuzzy="lightblue", main = "f2 - MOFLR")
@@ -373,9 +387,9 @@ Lower values of $\sum{E}$ mean that the predicted TFNs fit better with the obser
 When comparing the fuzzy linear regression and a statistical linear regression models, we can observe
 that while the fuzzy linear regression shows something akin to a confidence interval,
 the interval differs from the confidence intervals derived from a statistical linear 
-regression model (Figure \ref{fig:compare}).
+regression model (Figure \@ref(fig:regfig)).
 
-```{r regfig, eval=TRUE, echo=FALSE, fig.cap = 'Fuzzy and statistical linear regression. Fuzzy regression displays the central value and the support boundaries determined by the left and right spread (PLRLS - left panel). Statistical least-squares regressionshows the  confidence interval for the regression fit (LS - right panel).', fig.width = 8.5, fig.height = 3.5, fig.align = 'center'}
+```{r, regfig, eval=TRUE, echo=FALSE, warning = F, fig.cap = 'Fuzzy and statistical linear regression. Fuzzy regression displays the central value and the support boundaries determined by the left and right spread (PLRLS - left panel). Statistical least-squares regressionshows the  confidence interval for the regression fit (LS - right panel).', fig.width = 7, fig.height = 3.5, fig.align = 'center'}
 par(mfrow=c(1,2))
 f4 = fuzzylm(y~x, fuzzydat$lee, method="plrls")
 plot(f4, res=20, col.fuzzy="lightblue", main="PLRLS")
@@ -407,11 +421,12 @@ in the fuzzy regression model plots).
 
 To cite `fuzzyreg`, include the reference to the software and the used method.
 
-\v{S}krab\'{a}nek P. and Mart\'{i}nkov\'{a} N. 2021. Algorithm 1017: fuzzyreg: An R Package for 
-Fuzzy Linear Regression Models. ACM Trans. Math. Softw. 47: 29. doi: 10.1145/3451389.
+> Škrabánek P. and Martínková N. 2021. Algorithm 1017: fuzzyreg: An R Package for 
+> Fuzzy Linear Regression Models. *ACM Trans. Math. Softw.* **47:** 29. doi: 10.1145/3451389.
 
 
-The references for the specific methods are accessible through the method help, e.g.
+The references for the specific methods are given in the above reference, through links in 
+Table \@ref(tab:methods) or accessible through the method help, e.g.
 the default fuzzy linear regression method PLRLS:
 ```{r, eval=FALSE}
 ?plrls

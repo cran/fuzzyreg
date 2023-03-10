@@ -1,3 +1,7 @@
+## fuzzyreg v. 0.6.2, build 2023-03-10
+
+- Fixed methods table rendering in the html vignette
+
 ## fuzzyreg v. 0.6.1, released 2023-03-09
 
 - Fixed bugs in `fuzzify` and `predict.fuzzylm` to account for multiple variables in argument `x`

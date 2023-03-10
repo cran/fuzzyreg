@@ -1,6 +1,6 @@
-d76a65139e45531265bcc9976ec3b6c8 *DESCRIPTION
+ae592f15b9ac78f3b9887983d83362fc *DESCRIPTION
 5aab77dc7a9d220bffd1676fdbc61a89 *NAMESPACE
-b32648c8e8aed88147d3901b7a6d15ad *NEWS.md
+4552d806f35b5ffc44a15b4212aa0301 *NEWS.md
 697fc182c1adbaf6d4f76adc5cc8a672 *R/GOF.R
 11aeb5adc0a334d5cc577e71f18df3c1 *R/TEF.r
 27207151d7835ea86f1451458a20947d *R/bfrl.r
@@ -23,13 +23,13 @@ c327aa2023ad58653c322fae640f192e *R/print.summary.fuzzylm.R
 cff18c6fc532e1f6d09046d44cd788f5 *R/prodSfuzzy.r
 658c580db54bd339829288140180b793 *R/sumFuzzy.R
 69ec8f1ceb291132bbf60e677999f9db *R/summary.fuzzylm.R
-b52b2c13fe67788e20777178dc71aed1 *build/vignette.rds
+7ed61f8b6d2eae0460420f63b672eeb6 *build/vignette.rds
 b2e57ba8847303ad58df36dd98db7884 *data/bats.rda
 9643d7708e3781abd200a73920470574 *data/fuzzydat.rda
 3241d874781fdc1fcf817a6273c4d9c3 *inst/CITATION
-bd2955f48e2bc39724a3f7433625d347 *inst/doc/GettingStarted.R
-00472312e8f35974edee30219aef41a3 *inst/doc/GettingStarted.Rmd
-6a205c14aefb31476f60722dd357c65d *inst/doc/GettingStarted.html
+f55184d296f8ca4080b197c39aa975ef *inst/doc/GettingStarted.R
+43a42bec5efa163e88e441d43f4eca16 *inst/doc/GettingStarted.Rmd
+79ba2fe32906025ac8f54a7cb35b0b59 *inst/doc/GettingStarted.html
 94553070918c0d7b521a2bfb76660d3f *man/GOF.Rd
 6167ff7a5ba51128446554f563fccf67 *man/TEF.Rd
 a6624600716d698d747e09bf0d8b1145 *man/bats.Rd
@@ -56,4 +56,4 @@ d280e137f87700e10d4ea18e01e1cd32 *man/summary.fuzzylm.Rd
 0c30f50dacc89ebd3b360a2f1daf1748 *tests/testthat.R
 1ad0744382ec535938689bd73f4b7d49 *tests/testthat/test_correctSolution.R
 f539b238cb20166da9cffa502a7fdcac *tests/testthat/test_performance.R
-00472312e8f35974edee30219aef41a3 *vignettes/GettingStarted.Rmd
+43a42bec5efa163e88e441d43f4eca16 *vignettes/GettingStarted.Rmd
